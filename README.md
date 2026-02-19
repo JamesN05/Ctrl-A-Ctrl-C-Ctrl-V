@@ -1,5 +1,4 @@
 # Ctrl-A-Ctrl-C-Ctrl-V
-To-Do
 
 # AR Smart Glasses Memory Assistance System
 
