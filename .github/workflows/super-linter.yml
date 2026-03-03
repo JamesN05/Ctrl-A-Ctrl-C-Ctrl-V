@@ -5,6 +5,11 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+    
+permissions:
+    contents: read
+    checks: write
+    statuses: write
 
 jobs:
   run-lint:
@@ -20,3 +25,5 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    
