@@ -1,6 +1,6 @@
 # Ctrl-A-Ctrl-C-Ctrl-V
 
-# AR Smart Glasses Memory Assistance System
+## AR Smart Glasses Memory Assistance System
 
 ## Project Overview
 
