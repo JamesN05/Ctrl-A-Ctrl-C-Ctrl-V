@@ -1,97 +1,120 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Ctrl-A-Ctrl-C-Ctrl-V
 
-# Getting Started
+## AR Smart Glasses Memory Assistance System
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+### Project Overview
 
-## Step 1: Start Metro
+This project explores the development of an **Augmented Reality (AR) smart glasses system** designed to support individuals living with memory loss, dementia, or Alzheimer’s disease. The goal is to assist users during everyday social interactions by providing real-time contextual information through AR.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+The system leverages **facial recognition, voice transcription, and AI-powered summarisation** to recognise people, recall previous conversations, and present relevant information directly through an AR display.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+The prototype currently consists of a **React Native mobile application with Android AR components**.
 
-```sh
-# Using npm
+---
+
+## Problem Context
+
+Individuals with memory-related illnesses often struggle to:
+
+* Recognise familiar people
+* Recall recent conversations
+* Maintain meaningful social connections
+
+Existing tools offer limited real-time assistance during daily interactions. Advances in **AR technology and artificial intelligence** allow the creation of systems that provide contextual information when it is needed most.
+
+---
+
+## Proposed Solution
+
+The solution is a **pair of AR smart glasses supported by a mobile application** that can:
+
+* Recognise people using **facial recognition**
+* Transcribe conversations using **voice analysis**
+* Generate **AI summaries** of interactions
+* Store information securely for future recall
+* Display contextual prompts through **augmented reality**
+
+A companion mobile application allows **family members or caregivers** to configure and manage system behaviour.
+
+---
+
+## Planned Features
+
+* Facial recognition for identifying known individuals
+* Real-time conversation transcription
+* AI-generated conversation summaries
+* Secure cloud-based storage
+* AR prompts showing name, relationship, and interaction history
+* Date and time display for orientation
+* To-do lists and reminder functionality
+* Caregiver management through a mobile interface
+
+---
+
+## Technology Stack (Prototype)
+
+* **React Native** – Mobile application framework
+* **Android (Kotlin / Java)** – Native modules and AR integration
+* **ARCore** – Augmented Reality functionality
+* **Firebase** – Storage and backend services
+* **ML Kit Face Detection** – Face detection capability
+
+---
+
+## Getting Started
+
+### 1. Install dependencies
+
+From the project root:
+
+```
+npm install
+```
+
+### 2. Start the React Native development server
+
+```
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### 3. Run the Android application
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+In a new terminal:
 
-### Android
-
-```sh
-# Using npm
+```
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+Make sure you have:
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+* Android Studio installed
+* An Android emulator running or a physical device connected
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+---
 
-```sh
-bundle install
-```
+## Project Status
 
-Then, and every time you update your native dependencies, run:
+**Current Stage:**
+Prototype development
 
-```sh
-bundle exec pod install
-```
+**Next Steps**
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+* Improve AR face recognition integration
+* Implement conversation transcription
+* Integrate AI summarisation
+* Develop caregiver companion features
+* Improve UI/UX design
 
-```sh
-# Using npm
-npm run ios
+---
 
-# OR using Yarn
-yarn ios
-```
+## Contributors
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+This project is being developed as part of a **group academic project**.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+Contributors will be listed here as development progresses.
 
-## Step 3: Modify your app
+---
 
-Now that you have successfully run the app, let's make changes!
+## Disclaimer
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is an **academic prototype** and is **not intended to be used as a medical device or diagnostic tool**.
