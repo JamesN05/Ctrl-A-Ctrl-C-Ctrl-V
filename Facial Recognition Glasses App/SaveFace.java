@@ -1,0 +1,2 @@
+Bitmap bitmap = imageToBitmap(cameraImage);
+
