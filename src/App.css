@@ -13,11 +13,8 @@ body {
 .overlay {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 40px;
   position: relative;
+  padding: 40px;
 }
 
 .bg-image {
@@ -47,6 +44,12 @@ body {
   font-size: 13px;
   margin-bottom: 4px;
   line-height: 1.4;
+}
+
+.profile-card {
+  position: absolute;
+  top: 40px;
+  left: 40px;
 }
 
 .profile-header {
@@ -79,6 +82,12 @@ body {
   border-bottom: none;
 }
 
+.task-card {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -88,4 +97,29 @@ body {
 .card-header h3 {
   font-size: 15px;
   font-weight: 600;
+}
+
+.clock {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  text-shadow: none;
+}
+
+/* Adjust spacing between time and date */
+.clock p {
+  margin-bottom: 4px;
 }
