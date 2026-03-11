@@ -14,6 +14,7 @@ public class FaceScan {
                                        Bitmap cameraFrame,
                                        Rect faceBounds) throws IOException {
 
+        //Co-ordinates of the top left corner of the green box for creating the bitmap image
         int faceX = Math.max(0, faceBounds.left);
         int faceY = Math.max(0, faceBounds.top);
 
