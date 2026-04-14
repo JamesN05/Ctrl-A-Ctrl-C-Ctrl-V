@@ -1,0 +1,546 @@
+﻿#include "il2cpp-config.h"
+
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+IL2CPP_EXTERN_C_BEGIN
+IL2CPP_EXTERN_C_END
+
+
+
+
+// 0x00000001 Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderState Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::get_State()
+extern void CameraFaderQuad_get_State_mA14F6FCC0A94619850D96B9E64AB4F19FB8885C1 (void);
+// 0x00000002 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::set_State(Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderState)
+extern void CameraFaderQuad_set_State_mC77F6588477E9791547064C14F3DF58EF532CD64 (void);
+// 0x00000003 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::Initialize(Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile)
+extern void CameraFaderQuad_Initialize_mA4050B634EB35A9AC9366901574FBC083023AE0F (void);
+// 0x00000004 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::FadeOutAsync(System.Single,UnityEngine.Color,System.Collections.Generic.IEnumerable`1<UnityEngine.Camera>)
+extern void CameraFaderQuad_FadeOutAsync_mAF8AB054FCE5E7427908A8F2EEAB30B711BB24C0 (void);
+// 0x00000005 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::FadeInAsync(System.Single)
+extern void CameraFaderQuad_FadeInAsync_m51FC46B56103CF3F8766BF1069F6EBBAFD5D18CF (void);
+// 0x00000006 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::OnDestroy()
+extern void CameraFaderQuad_OnDestroy_m0E7EA0F4FBDB65A87D308711886E234500E1E786 (void);
+// 0x00000007 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::DestroyQuads()
+extern void CameraFaderQuad_DestroyQuads_m26C7F17584D350A1D56C5E7A52C15CC05570CF8C (void);
+// 0x00000008 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::.ctor()
+extern void CameraFaderQuad__ctor_m5F704E9316E0A03B71F8992E3469B7F0F81F6FAB (void);
+// 0x00000009 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad::.cctor()
+extern void CameraFaderQuad__cctor_m9A0185FA61E49722D4A6AB347AF534BF0CF33507 (void);
+// 0x0000000A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad/<FadeOutAsync>d__15::MoveNext()
+extern void U3CFadeOutAsyncU3Ed__15_MoveNext_m5AD4ABF8A883B8C4EFE87724DCFA6CF9946ED687 (void);
+// 0x0000000B System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad/<FadeOutAsync>d__15::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CFadeOutAsyncU3Ed__15_SetStateMachine_m109228DEC0BF666F93760596926CA2E694748AF7 (void);
+// 0x0000000C System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad/<FadeInAsync>d__17::MoveNext()
+extern void U3CFadeInAsyncU3Ed__17_MoveNext_mBA4AF447676FBA517030CEE92EA7D7E8830AAEA9 (void);
+// 0x0000000D System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderQuad/<FadeInAsync>d__17::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CFadeInAsyncU3Ed__17_SetStateMachine_m23344138F0DC5C5941AA14EC0147F27644244ED6 (void);
+// 0x0000000E Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderState Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ICameraFader::get_State()
+// 0x0000000F System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ICameraFader::Initialize(Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile)
+// 0x00000010 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ICameraFader::FadeOutAsync(System.Single,UnityEngine.Color,System.Collections.Generic.IEnumerable`1<UnityEngine.Camera>)
+// 0x00000011 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ICameraFader::FadeInAsync(System.Single)
+// 0x00000012 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ICameraFader::OnDestroy()
+// 0x00000013 System.Action Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_OnTransitionStarted()
+// 0x00000014 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_OnTransitionStarted(System.Action)
+// 0x00000015 System.Action Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_OnTransitionCompleted()
+// 0x00000016 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_OnTransitionCompleted(System.Action)
+// 0x00000017 System.Boolean Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_UseFadeColor()
+// 0x00000018 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_UseFadeColor(System.Boolean)
+// 0x00000019 UnityEngine.Color Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_FadeColor()
+// 0x0000001A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_FadeColor(UnityEngine.Color)
+// 0x0000001B System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_FadeInTime()
+// 0x0000001C System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_FadeInTime(System.Single)
+// 0x0000001D System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_FadeOutTime()
+// 0x0000001E System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_FadeOutTime(System.Single)
+// 0x0000001F Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderTargets Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_FadeTargets()
+// 0x00000020 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::set_FadeTargets(Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderTargets)
+// 0x00000021 System.Boolean Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_TransitionInProgress()
+// 0x00000022 System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::get_TransitionProgress()
+// 0x00000023 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::DoSceneTransition(System.Collections.Generic.IEnumerable`1<System.Func`1<System.Threading.Tasks.Task>>,System.Single,System.Single,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+// 0x00000024 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::DoSceneTransition(System.Collections.Generic.IEnumerable`1<System.Func`1<System.Threading.Tasks.Task>>,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+// 0x00000025 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::DoSceneTransition(System.Func`1<System.Threading.Tasks.Task>,System.Func`1<System.Threading.Tasks.Task>,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+// 0x00000026 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::DoSceneTransition(System.Func`1<System.Threading.Tasks.Task>,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+// 0x00000027 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::SetCustomFadeTargetCameras(System.Collections.Generic.IEnumerable`1<UnityEngine.Camera>)
+// 0x00000028 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::FadeOut()
+// 0x00000029 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::FadeIn()
+// 0x0000002A System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::FadeOut(System.Single)
+// 0x0000002B System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::FadeIn(System.Single)
+// 0x0000002C UnityEngine.Transform Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::ShowDefaultProgressIndicator()
+// 0x0000002D System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::HideProgressIndicator()
+// 0x0000002E System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::SetProgressValue(System.Single)
+// 0x0000002F System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.ISceneTransitionService::SetProgressMessage(System.String)
+// 0x00000030 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.LoadContentScene::Start()
+extern void LoadContentScene_Start_m657BE67CF2CB610F1EADB3E0A4FFBB8851A23A5A (void);
+// 0x00000031 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.LoadContentScene::LoadContent()
+extern void LoadContentScene_LoadContent_m1E79FA7804D8C247C2792633B121489CEFFBE445 (void);
+// 0x00000032 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.LoadContentScene::.ctor()
+extern void LoadContentScene__ctor_mFF4A8B8CBE965925C2D57DAAE90AD120D6DAC567 (void);
+// 0x00000033 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.LoadContentScene::.cctor()
+extern void LoadContentScene__cctor_m99A8DB5E43D8F364201FB5D731CA1E015721D43D (void);
+// 0x00000034 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.LoadContentScene::<LoadContent>b__5_0()
+extern void LoadContentScene_U3CLoadContentU3Eb__5_0_m579F7F827497CA33CB249D084A1E80D5F7A60F03 (void);
+// 0x00000035 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::.ctor(Microsoft.MixedReality.Toolkit.IMixedRealityServiceRegistrar,System.String,System.UInt32,Microsoft.MixedReality.Toolkit.BaseMixedRealityProfile)
+extern void SceneTransitionService__ctor_m8B51A94832BC88CFBBC38519AB0C48814B36DCF7 (void);
+// 0x00000036 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::.ctor(System.String,System.UInt32,Microsoft.MixedReality.Toolkit.BaseMixedRealityProfile)
+extern void SceneTransitionService__ctor_m9557EC677988CFAF171C375D27A9DA3A76BFB361 (void);
+// 0x00000037 System.Boolean Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_UseFadeColor()
+extern void SceneTransitionService_get_UseFadeColor_m53F1F997F748F27A92FD569F48843340B434BC83 (void);
+// 0x00000038 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_UseFadeColor(System.Boolean)
+extern void SceneTransitionService_set_UseFadeColor_mA30926BD691DED22C211640AE22A39B2D2A0E551 (void);
+// 0x00000039 UnityEngine.Color Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_FadeColor()
+extern void SceneTransitionService_get_FadeColor_m3DE21D4B0B526201B3326D76A5B51A867E31418B (void);
+// 0x0000003A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_FadeColor(UnityEngine.Color)
+extern void SceneTransitionService_set_FadeColor_mD77B2B5C853F4E4FF4C89EBF2C61A83DEC16BE5E (void);
+// 0x0000003B System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_FadeInTime()
+extern void SceneTransitionService_get_FadeInTime_mC237DFCBD6D882016F9E4FBDAEC45AE66444F957 (void);
+// 0x0000003C System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_FadeInTime(System.Single)
+extern void SceneTransitionService_set_FadeInTime_m4CAD1E1EACCB54593702D9973FDAB6C0D33D56A3 (void);
+// 0x0000003D System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_FadeOutTime()
+extern void SceneTransitionService_get_FadeOutTime_m628AAB7A36B052B2B9612AFBA2A9A52208587134 (void);
+// 0x0000003E System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_FadeOutTime(System.Single)
+extern void SceneTransitionService_set_FadeOutTime_mE69A14355FE8D3543775369C560F1A7D271801EB (void);
+// 0x0000003F Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderTargets Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_FadeTargets()
+extern void SceneTransitionService_get_FadeTargets_m48E1BFBE335D2D6AC4625AC67BEE8C0C8D02A137 (void);
+// 0x00000040 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_FadeTargets(Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderTargets)
+extern void SceneTransitionService_set_FadeTargets_m20B0765C97362FE20A9CA26AF0E90867CF7E4E36 (void);
+// 0x00000041 System.Action Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_OnTransitionStarted()
+extern void SceneTransitionService_get_OnTransitionStarted_m2205EC663C04C8EDC070FB446A44E145BD85DFAF (void);
+// 0x00000042 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_OnTransitionStarted(System.Action)
+extern void SceneTransitionService_set_OnTransitionStarted_m17376B7E04962661E60478FA15DB5D0ADCFA7C78 (void);
+// 0x00000043 System.Action Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_OnTransitionCompleted()
+extern void SceneTransitionService_get_OnTransitionCompleted_m53618183BA194D75229D5AEB6BE9A0C484EFA6D6 (void);
+// 0x00000044 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_OnTransitionCompleted(System.Action)
+extern void SceneTransitionService_set_OnTransitionCompleted_mB849F3DF54B4F886C78F2A9AB24B18014F6D8ED9 (void);
+// 0x00000045 System.Boolean Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_TransitionInProgress()
+extern void SceneTransitionService_get_TransitionInProgress_m66D971CFD17B8093B8464BA409740836D4EF5B25 (void);
+// 0x00000046 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_TransitionInProgress(System.Boolean)
+extern void SceneTransitionService_set_TransitionInProgress_m627F059A39A4B72D711EDC3FBB6D1746606DDC6D (void);
+// 0x00000047 System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::get_TransitionProgress()
+extern void SceneTransitionService_get_TransitionProgress_m31E9AC47549AC8CB741D8BB8B479AFB6E5DDC523 (void);
+// 0x00000048 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::set_TransitionProgress(System.Single)
+extern void SceneTransitionService_set_TransitionProgress_m64F071787B0C9AA5BB151604C73DCE818AEDE0AB (void);
+// 0x00000049 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::Initialize()
+extern void SceneTransitionService_Initialize_m72E7A162994302789155B339A43BFB4E0985A4B6 (void);
+// 0x0000004A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::Enable()
+extern void SceneTransitionService_Enable_mEAC28617227A9FBE8F7B6ED545692C269D103860 (void);
+// 0x0000004B System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::Destroy()
+extern void SceneTransitionService_Destroy_m32DB44D95FABC5356BB1797FE2991445B05ACDD2 (void);
+// 0x0000004C System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::DoSceneTransition(System.Func`1<System.Threading.Tasks.Task>,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+extern void SceneTransitionService_DoSceneTransition_mE8316A5D536388738DB30410FD5D8A2328149EE6 (void);
+// 0x0000004D System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::DoSceneTransition(System.Func`1<System.Threading.Tasks.Task>,System.Func`1<System.Threading.Tasks.Task>,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+extern void SceneTransitionService_DoSceneTransition_mE2B284BC5AB78F8150B0725B2E5A6F9CAA041886 (void);
+// 0x0000004E System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::DoSceneTransition(System.Collections.Generic.IEnumerable`1<System.Func`1<System.Threading.Tasks.Task>>,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+extern void SceneTransitionService_DoSceneTransition_m22E1F79888010305FFBFE110B57828155B6018A9 (void);
+// 0x0000004F System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::DoSceneTransition(System.Collections.Generic.IEnumerable`1<System.Func`1<System.Threading.Tasks.Task>>,System.Single,System.Single,Microsoft.MixedReality.Toolkit.UI.IProgressIndicator)
+extern void SceneTransitionService_DoSceneTransition_m4B225C18C0C07E5A7B1ED4B19394D899741A5D3F (void);
+// 0x00000050 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::SetCustomFadeTargetCameras(System.Collections.Generic.IEnumerable`1<UnityEngine.Camera>)
+extern void SceneTransitionService_SetCustomFadeTargetCameras_mFE1AF0DC07BC444969CE2B7BB4FB511CFD0C7D5A (void);
+// 0x00000051 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::FadeOut()
+extern void SceneTransitionService_FadeOut_mAD48F17909A52D3C65896A28E1998E5356D6604E (void);
+// 0x00000052 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::FadeIn()
+extern void SceneTransitionService_FadeIn_mC93C532AB8C8C716513495CDFE0918ECBFEDD3E2 (void);
+// 0x00000053 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::FadeOut(System.Single)
+extern void SceneTransitionService_FadeOut_m7A54D043ED119FC2051E4C92C49149AD08EAD54B (void);
+// 0x00000054 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::FadeIn(System.Single)
+extern void SceneTransitionService_FadeIn_m31EE5A210F05145C0CA7C77EE8685161CB1C2413 (void);
+// 0x00000055 UnityEngine.Transform Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::ShowDefaultProgressIndicator()
+extern void SceneTransitionService_ShowDefaultProgressIndicator_m87692C77D0C796D4F717589E55E0199288766138 (void);
+// 0x00000056 System.Threading.Tasks.Task Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::HideProgressIndicator()
+extern void SceneTransitionService_HideProgressIndicator_m004CC38D4FD189237E90994E0D48AD4AA1326176 (void);
+// 0x00000057 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::SetProgressMessage(System.String)
+extern void SceneTransitionService_SetProgressMessage_mC8637CF4C2FDB1506BBA60C018AEF3A92DBD812C (void);
+// 0x00000058 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::SetProgressValue(System.Single)
+extern void SceneTransitionService_SetProgressValue_m7C763626A98F169527EB66225265321B739FF7CD (void);
+// 0x00000059 System.Collections.Generic.List`1<UnityEngine.Camera> Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::GatherFadeTargetCameras()
+extern void SceneTransitionService_GatherFadeTargetCameras_m78061A6561227905F43B8C2C776B6DB339DA66A2 (void);
+// 0x0000005A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::CreateDefaultProgressIndicator()
+extern void SceneTransitionService_CreateDefaultProgressIndicator_mBCF38CA05C6D648C0F7D58F8B888D6B101BBA3E7 (void);
+// 0x0000005B System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::CleanUpDefaultProgressIndicator()
+extern void SceneTransitionService_CleanUpDefaultProgressIndicator_mAFEEDD5343937C0D141DF31D243859C1F566D2C0 (void);
+// 0x0000005C System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::CreateCameraFader()
+extern void SceneTransitionService_CreateCameraFader_mE9E7083B693A4EDB77399547AE0B4D3A8728A67E (void);
+// 0x0000005D System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::CleanUpCameraFader()
+extern void SceneTransitionService_CleanUpCameraFader_m11D3248199B8D147737BF2BFE9A973E174448E65 (void);
+// 0x0000005E System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService::.cctor()
+extern void SceneTransitionService__cctor_mE0318649A5F313CE1E5A8BA99CB5764A56241558 (void);
+// 0x0000005F System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__48::MoveNext()
+extern void U3CDoSceneTransitionU3Ed__48_MoveNext_m87C0B640A4D5830431F0C60B5D0D867112B6979D (void);
+// 0x00000060 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__48::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CDoSceneTransitionU3Ed__48_SetStateMachine_m3E9C59E0B523125A0FD426E7622F5BCB7B85FADA (void);
+// 0x00000061 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__49::MoveNext()
+extern void U3CDoSceneTransitionU3Ed__49_MoveNext_m6C55700470E6E81EF3FA7BA4407C628657119485 (void);
+// 0x00000062 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__49::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CDoSceneTransitionU3Ed__49_SetStateMachine_mEA83A82A2551E8104C554393956EB94E162199D6 (void);
+// 0x00000063 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__50::MoveNext()
+extern void U3CDoSceneTransitionU3Ed__50_MoveNext_m8C17C2E63FDA749A26C4ADEB7E2EEC6A0C4D77F8 (void);
+// 0x00000064 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__50::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CDoSceneTransitionU3Ed__50_SetStateMachine_mA0E9B49D96A08D8693383C95BE98EF010BB1ECAF (void);
+// 0x00000065 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__52::MoveNext()
+extern void U3CDoSceneTransitionU3Ed__52_MoveNext_m346EFD39CC3963CDC2111082F42D462B1E69ECFB (void);
+// 0x00000066 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<DoSceneTransition>d__52::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CDoSceneTransitionU3Ed__52_SetStateMachine_m04B07F756E15185510643B361DAE7F24907D93A0 (void);
+// 0x00000067 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeOut>d__54::MoveNext()
+extern void U3CFadeOutU3Ed__54_MoveNext_mEBBF7AA50100258BB03F2D79B4C0869866C77EE2 (void);
+// 0x00000068 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeOut>d__54::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CFadeOutU3Ed__54_SetStateMachine_m1E281BDBF21D9502C0F374C58235FB0830220AE6 (void);
+// 0x00000069 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeIn>d__55::MoveNext()
+extern void U3CFadeInU3Ed__55_MoveNext_m9F087A28D998370C4648086DE839CA95D0041372 (void);
+// 0x0000006A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeIn>d__55::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CFadeInU3Ed__55_SetStateMachine_m6C81435DBFA3F9D188B8ADEE732B75337C4806F9 (void);
+// 0x0000006B System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeOut>d__57::MoveNext()
+extern void U3CFadeOutU3Ed__57_MoveNext_mD9B9F4C1B0AC1C2EC5E90D856D3910D91B0DEBED (void);
+// 0x0000006C System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeOut>d__57::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CFadeOutU3Ed__57_SetStateMachine_m5AC8AA5F032DB6B4A9271B0C81071B54781B7C19 (void);
+// 0x0000006D System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeIn>d__59::MoveNext()
+extern void U3CFadeInU3Ed__59_MoveNext_mA1A2E69E2F3C992AC8D27D1E0FF0E9DF10B3A380 (void);
+// 0x0000006E System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<FadeIn>d__59::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CFadeInU3Ed__59_SetStateMachine_mC9AE487E00921855042787A206F8BF3A512685D6 (void);
+// 0x0000006F System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<HideProgressIndicator>d__63::MoveNext()
+extern void U3CHideProgressIndicatorU3Ed__63_MoveNext_mB934BC7C78D38B98D859909CE986093C2EF4A67F (void);
+// 0x00000070 System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionService/<HideProgressIndicator>d__63::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CHideProgressIndicatorU3Ed__63_SetStateMachine_m35E2CDA82557E3E5E91BA0C9C195E8E8BB7C756B (void);
+// 0x00000071 System.Boolean Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_UseDefaultProgressIndicator()
+extern void SceneTransitionServiceProfile_get_UseDefaultProgressIndicator_m08657A92096950AB433DF7B21CE397431FE0A592 (void);
+// 0x00000072 UnityEngine.GameObject Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_DefaultProgressIndicatorPrefab()
+extern void SceneTransitionServiceProfile_get_DefaultProgressIndicatorPrefab_mA8E349356431E59D85F2DE8BF66B539D1842341D (void);
+// 0x00000073 Microsoft.MixedReality.Toolkit.Utilities.SystemType Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_CameraFaderType()
+extern void SceneTransitionServiceProfile_get_CameraFaderType_mBAAA6B7BCBE1F8632B0B25B1085D50BEDDCA6FC3 (void);
+// 0x00000074 System.Boolean Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_UseFadeColor()
+extern void SceneTransitionServiceProfile_get_UseFadeColor_m09FEECDE56A8D0446A5A649D1D39DEEBA2AAB1CD (void);
+// 0x00000075 UnityEngine.Color Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_FadeColor()
+extern void SceneTransitionServiceProfile_get_FadeColor_m0B37F12AA0326EB871814991A78CE98B2214A2A1 (void);
+// 0x00000076 System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_FadeOutTime()
+extern void SceneTransitionServiceProfile_get_FadeOutTime_m2BED4172DC25D211E5F011CEB5E545CB646B9727 (void);
+// 0x00000077 System.Single Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_FadeInTime()
+extern void SceneTransitionServiceProfile_get_FadeInTime_mF0EC719CAF6848A38C07872C1F9BC2092BD52966 (void);
+// 0x00000078 Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.CameraFaderTargets Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_FadeTargets()
+extern void SceneTransitionServiceProfile_get_FadeTargets_m7E2056DA1A912E3F75188627C470DEF1ED6CB02C (void);
+// 0x00000079 UnityEngine.Material Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::get_CameraFaderMaterial()
+extern void SceneTransitionServiceProfile_get_CameraFaderMaterial_m75C5603665B71DDBEAFFBB743CDB5D58A8378DB8 (void);
+// 0x0000007A System.Void Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile::.ctor()
+extern void SceneTransitionServiceProfile__ctor_m3260933335E5C729D0B7E79FA83181C312C2DABA (void);
+static Il2CppMethodPointer s_methodPointers[122] = 
+{
+	CameraFaderQuad_get_State_mA14F6FCC0A94619850D96B9E64AB4F19FB8885C1,
+	CameraFaderQuad_set_State_mC77F6588477E9791547064C14F3DF58EF532CD64,
+	CameraFaderQuad_Initialize_mA4050B634EB35A9AC9366901574FBC083023AE0F,
+	CameraFaderQuad_FadeOutAsync_mAF8AB054FCE5E7427908A8F2EEAB30B711BB24C0,
+	CameraFaderQuad_FadeInAsync_m51FC46B56103CF3F8766BF1069F6EBBAFD5D18CF,
+	CameraFaderQuad_OnDestroy_m0E7EA0F4FBDB65A87D308711886E234500E1E786,
+	CameraFaderQuad_DestroyQuads_m26C7F17584D350A1D56C5E7A52C15CC05570CF8C,
+	CameraFaderQuad__ctor_m5F704E9316E0A03B71F8992E3469B7F0F81F6FAB,
+	CameraFaderQuad__cctor_m9A0185FA61E49722D4A6AB347AF534BF0CF33507,
+	U3CFadeOutAsyncU3Ed__15_MoveNext_m5AD4ABF8A883B8C4EFE87724DCFA6CF9946ED687,
+	U3CFadeOutAsyncU3Ed__15_SetStateMachine_m109228DEC0BF666F93760596926CA2E694748AF7,
+	U3CFadeInAsyncU3Ed__17_MoveNext_mBA4AF447676FBA517030CEE92EA7D7E8830AAEA9,
+	U3CFadeInAsyncU3Ed__17_SetStateMachine_m23344138F0DC5C5941AA14EC0147F27644244ED6,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	LoadContentScene_Start_m657BE67CF2CB610F1EADB3E0A4FFBB8851A23A5A,
+	LoadContentScene_LoadContent_m1E79FA7804D8C247C2792633B121489CEFFBE445,
+	LoadContentScene__ctor_mFF4A8B8CBE965925C2D57DAAE90AD120D6DAC567,
+	LoadContentScene__cctor_m99A8DB5E43D8F364201FB5D731CA1E015721D43D,
+	LoadContentScene_U3CLoadContentU3Eb__5_0_m579F7F827497CA33CB249D084A1E80D5F7A60F03,
+	SceneTransitionService__ctor_m8B51A94832BC88CFBBC38519AB0C48814B36DCF7,
+	SceneTransitionService__ctor_m9557EC677988CFAF171C375D27A9DA3A76BFB361,
+	SceneTransitionService_get_UseFadeColor_m53F1F997F748F27A92FD569F48843340B434BC83,
+	SceneTransitionService_set_UseFadeColor_mA30926BD691DED22C211640AE22A39B2D2A0E551,
+	SceneTransitionService_get_FadeColor_m3DE21D4B0B526201B3326D76A5B51A867E31418B,
+	SceneTransitionService_set_FadeColor_mD77B2B5C853F4E4FF4C89EBF2C61A83DEC16BE5E,
+	SceneTransitionService_get_FadeInTime_mC237DFCBD6D882016F9E4FBDAEC45AE66444F957,
+	SceneTransitionService_set_FadeInTime_m4CAD1E1EACCB54593702D9973FDAB6C0D33D56A3,
+	SceneTransitionService_get_FadeOutTime_m628AAB7A36B052B2B9612AFBA2A9A52208587134,
+	SceneTransitionService_set_FadeOutTime_mE69A14355FE8D3543775369C560F1A7D271801EB,
+	SceneTransitionService_get_FadeTargets_m48E1BFBE335D2D6AC4625AC67BEE8C0C8D02A137,
+	SceneTransitionService_set_FadeTargets_m20B0765C97362FE20A9CA26AF0E90867CF7E4E36,
+	SceneTransitionService_get_OnTransitionStarted_m2205EC663C04C8EDC070FB446A44E145BD85DFAF,
+	SceneTransitionService_set_OnTransitionStarted_m17376B7E04962661E60478FA15DB5D0ADCFA7C78,
+	SceneTransitionService_get_OnTransitionCompleted_m53618183BA194D75229D5AEB6BE9A0C484EFA6D6,
+	SceneTransitionService_set_OnTransitionCompleted_mB849F3DF54B4F886C78F2A9AB24B18014F6D8ED9,
+	SceneTransitionService_get_TransitionInProgress_m66D971CFD17B8093B8464BA409740836D4EF5B25,
+	SceneTransitionService_set_TransitionInProgress_m627F059A39A4B72D711EDC3FBB6D1746606DDC6D,
+	SceneTransitionService_get_TransitionProgress_m31E9AC47549AC8CB741D8BB8B479AFB6E5DDC523,
+	SceneTransitionService_set_TransitionProgress_m64F071787B0C9AA5BB151604C73DCE818AEDE0AB,
+	SceneTransitionService_Initialize_m72E7A162994302789155B339A43BFB4E0985A4B6,
+	SceneTransitionService_Enable_mEAC28617227A9FBE8F7B6ED545692C269D103860,
+	SceneTransitionService_Destroy_m32DB44D95FABC5356BB1797FE2991445B05ACDD2,
+	SceneTransitionService_DoSceneTransition_mE8316A5D536388738DB30410FD5D8A2328149EE6,
+	SceneTransitionService_DoSceneTransition_mE2B284BC5AB78F8150B0725B2E5A6F9CAA041886,
+	SceneTransitionService_DoSceneTransition_m22E1F79888010305FFBFE110B57828155B6018A9,
+	SceneTransitionService_DoSceneTransition_m4B225C18C0C07E5A7B1ED4B19394D899741A5D3F,
+	SceneTransitionService_SetCustomFadeTargetCameras_mFE1AF0DC07BC444969CE2B7BB4FB511CFD0C7D5A,
+	SceneTransitionService_FadeOut_mAD48F17909A52D3C65896A28E1998E5356D6604E,
+	SceneTransitionService_FadeIn_mC93C532AB8C8C716513495CDFE0918ECBFEDD3E2,
+	SceneTransitionService_FadeOut_m7A54D043ED119FC2051E4C92C49149AD08EAD54B,
+	SceneTransitionService_FadeIn_m31EE5A210F05145C0CA7C77EE8685161CB1C2413,
+	SceneTransitionService_ShowDefaultProgressIndicator_m87692C77D0C796D4F717589E55E0199288766138,
+	SceneTransitionService_HideProgressIndicator_m004CC38D4FD189237E90994E0D48AD4AA1326176,
+	SceneTransitionService_SetProgressMessage_mC8637CF4C2FDB1506BBA60C018AEF3A92DBD812C,
+	SceneTransitionService_SetProgressValue_m7C763626A98F169527EB66225265321B739FF7CD,
+	SceneTransitionService_GatherFadeTargetCameras_m78061A6561227905F43B8C2C776B6DB339DA66A2,
+	SceneTransitionService_CreateDefaultProgressIndicator_mBCF38CA05C6D648C0F7D58F8B888D6B101BBA3E7,
+	SceneTransitionService_CleanUpDefaultProgressIndicator_mAFEEDD5343937C0D141DF31D243859C1F566D2C0,
+	SceneTransitionService_CreateCameraFader_mE9E7083B693A4EDB77399547AE0B4D3A8728A67E,
+	SceneTransitionService_CleanUpCameraFader_m11D3248199B8D147737BF2BFE9A973E174448E65,
+	SceneTransitionService__cctor_mE0318649A5F313CE1E5A8BA99CB5764A56241558,
+	U3CDoSceneTransitionU3Ed__48_MoveNext_m87C0B640A4D5830431F0C60B5D0D867112B6979D,
+	U3CDoSceneTransitionU3Ed__48_SetStateMachine_m3E9C59E0B523125A0FD426E7622F5BCB7B85FADA,
+	U3CDoSceneTransitionU3Ed__49_MoveNext_m6C55700470E6E81EF3FA7BA4407C628657119485,
+	U3CDoSceneTransitionU3Ed__49_SetStateMachine_mEA83A82A2551E8104C554393956EB94E162199D6,
+	U3CDoSceneTransitionU3Ed__50_MoveNext_m8C17C2E63FDA749A26C4ADEB7E2EEC6A0C4D77F8,
+	U3CDoSceneTransitionU3Ed__50_SetStateMachine_mA0E9B49D96A08D8693383C95BE98EF010BB1ECAF,
+	U3CDoSceneTransitionU3Ed__52_MoveNext_m346EFD39CC3963CDC2111082F42D462B1E69ECFB,
+	U3CDoSceneTransitionU3Ed__52_SetStateMachine_m04B07F756E15185510643B361DAE7F24907D93A0,
+	U3CFadeOutU3Ed__54_MoveNext_mEBBF7AA50100258BB03F2D79B4C0869866C77EE2,
+	U3CFadeOutU3Ed__54_SetStateMachine_m1E281BDBF21D9502C0F374C58235FB0830220AE6,
+	U3CFadeInU3Ed__55_MoveNext_m9F087A28D998370C4648086DE839CA95D0041372,
+	U3CFadeInU3Ed__55_SetStateMachine_m6C81435DBFA3F9D188B8ADEE732B75337C4806F9,
+	U3CFadeOutU3Ed__57_MoveNext_mD9B9F4C1B0AC1C2EC5E90D856D3910D91B0DEBED,
+	U3CFadeOutU3Ed__57_SetStateMachine_m5AC8AA5F032DB6B4A9271B0C81071B54781B7C19,
+	U3CFadeInU3Ed__59_MoveNext_mA1A2E69E2F3C992AC8D27D1E0FF0E9DF10B3A380,
+	U3CFadeInU3Ed__59_SetStateMachine_mC9AE487E00921855042787A206F8BF3A512685D6,
+	U3CHideProgressIndicatorU3Ed__63_MoveNext_mB934BC7C78D38B98D859909CE986093C2EF4A67F,
+	U3CHideProgressIndicatorU3Ed__63_SetStateMachine_m35E2CDA82557E3E5E91BA0C9C195E8E8BB7C756B,
+	SceneTransitionServiceProfile_get_UseDefaultProgressIndicator_m08657A92096950AB433DF7B21CE397431FE0A592,
+	SceneTransitionServiceProfile_get_DefaultProgressIndicatorPrefab_mA8E349356431E59D85F2DE8BF66B539D1842341D,
+	SceneTransitionServiceProfile_get_CameraFaderType_mBAAA6B7BCBE1F8632B0B25B1085D50BEDDCA6FC3,
+	SceneTransitionServiceProfile_get_UseFadeColor_m09FEECDE56A8D0446A5A649D1D39DEEBA2AAB1CD,
+	SceneTransitionServiceProfile_get_FadeColor_m0B37F12AA0326EB871814991A78CE98B2214A2A1,
+	SceneTransitionServiceProfile_get_FadeOutTime_m2BED4172DC25D211E5F011CEB5E545CB646B9727,
+	SceneTransitionServiceProfile_get_FadeInTime_mF0EC719CAF6848A38C07872C1F9BC2092BD52966,
+	SceneTransitionServiceProfile_get_FadeTargets_m7E2056DA1A912E3F75188627C470DEF1ED6CB02C,
+	SceneTransitionServiceProfile_get_CameraFaderMaterial_m75C5603665B71DDBEAFFBB743CDB5D58A8378DB8,
+	SceneTransitionServiceProfile__ctor_m3260933335E5C729D0B7E79FA83181C312C2DABA,
+};
+extern void U3CFadeOutAsyncU3Ed__15_MoveNext_m5AD4ABF8A883B8C4EFE87724DCFA6CF9946ED687_AdjustorThunk (void);
+extern void U3CFadeOutAsyncU3Ed__15_SetStateMachine_m109228DEC0BF666F93760596926CA2E694748AF7_AdjustorThunk (void);
+extern void U3CFadeInAsyncU3Ed__17_MoveNext_mBA4AF447676FBA517030CEE92EA7D7E8830AAEA9_AdjustorThunk (void);
+extern void U3CFadeInAsyncU3Ed__17_SetStateMachine_m23344138F0DC5C5941AA14EC0147F27644244ED6_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__48_MoveNext_m87C0B640A4D5830431F0C60B5D0D867112B6979D_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__48_SetStateMachine_m3E9C59E0B523125A0FD426E7622F5BCB7B85FADA_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__49_MoveNext_m6C55700470E6E81EF3FA7BA4407C628657119485_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__49_SetStateMachine_mEA83A82A2551E8104C554393956EB94E162199D6_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__50_MoveNext_m8C17C2E63FDA749A26C4ADEB7E2EEC6A0C4D77F8_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__50_SetStateMachine_mA0E9B49D96A08D8693383C95BE98EF010BB1ECAF_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__52_MoveNext_m346EFD39CC3963CDC2111082F42D462B1E69ECFB_AdjustorThunk (void);
+extern void U3CDoSceneTransitionU3Ed__52_SetStateMachine_m04B07F756E15185510643B361DAE7F24907D93A0_AdjustorThunk (void);
+extern void U3CFadeOutU3Ed__54_MoveNext_mEBBF7AA50100258BB03F2D79B4C0869866C77EE2_AdjustorThunk (void);
+extern void U3CFadeOutU3Ed__54_SetStateMachine_m1E281BDBF21D9502C0F374C58235FB0830220AE6_AdjustorThunk (void);
+extern void U3CFadeInU3Ed__55_MoveNext_m9F087A28D998370C4648086DE839CA95D0041372_AdjustorThunk (void);
+extern void U3CFadeInU3Ed__55_SetStateMachine_m6C81435DBFA3F9D188B8ADEE732B75337C4806F9_AdjustorThunk (void);
+extern void U3CFadeOutU3Ed__57_MoveNext_mD9B9F4C1B0AC1C2EC5E90D856D3910D91B0DEBED_AdjustorThunk (void);
+extern void U3CFadeOutU3Ed__57_SetStateMachine_m5AC8AA5F032DB6B4A9271B0C81071B54781B7C19_AdjustorThunk (void);
+extern void U3CFadeInU3Ed__59_MoveNext_mA1A2E69E2F3C992AC8D27D1E0FF0E9DF10B3A380_AdjustorThunk (void);
+extern void U3CFadeInU3Ed__59_SetStateMachine_mC9AE487E00921855042787A206F8BF3A512685D6_AdjustorThunk (void);
+extern void U3CHideProgressIndicatorU3Ed__63_MoveNext_mB934BC7C78D38B98D859909CE986093C2EF4A67F_AdjustorThunk (void);
+extern void U3CHideProgressIndicatorU3Ed__63_SetStateMachine_m35E2CDA82557E3E5E91BA0C9C195E8E8BB7C756B_AdjustorThunk (void);
+static Il2CppTokenAdjustorThunkPair s_adjustorThunks[22] = 
+{
+	{ 0x0600000A, U3CFadeOutAsyncU3Ed__15_MoveNext_m5AD4ABF8A883B8C4EFE87724DCFA6CF9946ED687_AdjustorThunk },
+	{ 0x0600000B, U3CFadeOutAsyncU3Ed__15_SetStateMachine_m109228DEC0BF666F93760596926CA2E694748AF7_AdjustorThunk },
+	{ 0x0600000C, U3CFadeInAsyncU3Ed__17_MoveNext_mBA4AF447676FBA517030CEE92EA7D7E8830AAEA9_AdjustorThunk },
+	{ 0x0600000D, U3CFadeInAsyncU3Ed__17_SetStateMachine_m23344138F0DC5C5941AA14EC0147F27644244ED6_AdjustorThunk },
+	{ 0x0600005F, U3CDoSceneTransitionU3Ed__48_MoveNext_m87C0B640A4D5830431F0C60B5D0D867112B6979D_AdjustorThunk },
+	{ 0x06000060, U3CDoSceneTransitionU3Ed__48_SetStateMachine_m3E9C59E0B523125A0FD426E7622F5BCB7B85FADA_AdjustorThunk },
+	{ 0x06000061, U3CDoSceneTransitionU3Ed__49_MoveNext_m6C55700470E6E81EF3FA7BA4407C628657119485_AdjustorThunk },
+	{ 0x06000062, U3CDoSceneTransitionU3Ed__49_SetStateMachine_mEA83A82A2551E8104C554393956EB94E162199D6_AdjustorThunk },
+	{ 0x06000063, U3CDoSceneTransitionU3Ed__50_MoveNext_m8C17C2E63FDA749A26C4ADEB7E2EEC6A0C4D77F8_AdjustorThunk },
+	{ 0x06000064, U3CDoSceneTransitionU3Ed__50_SetStateMachine_mA0E9B49D96A08D8693383C95BE98EF010BB1ECAF_AdjustorThunk },
+	{ 0x06000065, U3CDoSceneTransitionU3Ed__52_MoveNext_m346EFD39CC3963CDC2111082F42D462B1E69ECFB_AdjustorThunk },
+	{ 0x06000066, U3CDoSceneTransitionU3Ed__52_SetStateMachine_m04B07F756E15185510643B361DAE7F24907D93A0_AdjustorThunk },
+	{ 0x06000067, U3CFadeOutU3Ed__54_MoveNext_mEBBF7AA50100258BB03F2D79B4C0869866C77EE2_AdjustorThunk },
+	{ 0x06000068, U3CFadeOutU3Ed__54_SetStateMachine_m1E281BDBF21D9502C0F374C58235FB0830220AE6_AdjustorThunk },
+	{ 0x06000069, U3CFadeInU3Ed__55_MoveNext_m9F087A28D998370C4648086DE839CA95D0041372_AdjustorThunk },
+	{ 0x0600006A, U3CFadeInU3Ed__55_SetStateMachine_m6C81435DBFA3F9D188B8ADEE732B75337C4806F9_AdjustorThunk },
+	{ 0x0600006B, U3CFadeOutU3Ed__57_MoveNext_mD9B9F4C1B0AC1C2EC5E90D856D3910D91B0DEBED_AdjustorThunk },
+	{ 0x0600006C, U3CFadeOutU3Ed__57_SetStateMachine_m5AC8AA5F032DB6B4A9271B0C81071B54781B7C19_AdjustorThunk },
+	{ 0x0600006D, U3CFadeInU3Ed__59_MoveNext_mA1A2E69E2F3C992AC8D27D1E0FF0E9DF10B3A380_AdjustorThunk },
+	{ 0x0600006E, U3CFadeInU3Ed__59_SetStateMachine_mC9AE487E00921855042787A206F8BF3A512685D6_AdjustorThunk },
+	{ 0x0600006F, U3CHideProgressIndicatorU3Ed__63_MoveNext_mB934BC7C78D38B98D859909CE986093C2EF4A67F_AdjustorThunk },
+	{ 0x06000070, U3CHideProgressIndicatorU3Ed__63_SetStateMachine_m35E2CDA82557E3E5E91BA0C9C195E8E8BB7C756B_AdjustorThunk },
+};
+static const int32_t s_InvokerIndices[122] = 
+{
+	10,
+	32,
+	26,
+	2748,
+	1866,
+	23,
+	23,
+	23,
+	3,
+	23,
+	26,
+	23,
+	26,
+	10,
+	26,
+	2748,
+	1866,
+	23,
+	14,
+	26,
+	14,
+	26,
+	95,
+	31,
+	1374,
+	1292,
+	814,
+	384,
+	814,
+	384,
+	10,
+	32,
+	95,
+	814,
+	2749,
+	121,
+	186,
+	121,
+	26,
+	14,
+	14,
+	1866,
+	1866,
+	14,
+	14,
+	384,
+	26,
+	23,
+	23,
+	23,
+	3,
+	14,
+	2072,
+	1992,
+	95,
+	31,
+	1374,
+	1292,
+	814,
+	384,
+	814,
+	384,
+	10,
+	32,
+	14,
+	26,
+	14,
+	26,
+	95,
+	31,
+	814,
+	384,
+	23,
+	23,
+	23,
+	121,
+	186,
+	121,
+	2749,
+	26,
+	14,
+	14,
+	1866,
+	1866,
+	14,
+	14,
+	26,
+	384,
+	14,
+	23,
+	23,
+	23,
+	23,
+	3,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	95,
+	14,
+	14,
+	95,
+	1374,
+	814,
+	814,
+	10,
+	14,
+	23,
+};
+extern const Il2CppCodeGenModule g_Microsoft_MixedReality_Toolkit_Extensions_SceneTransitionServiceCodeGenModule;
+const Il2CppCodeGenModule g_Microsoft_MixedReality_Toolkit_Extensions_SceneTransitionServiceCodeGenModule = 
+{
+	"Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService.dll",
+	122,
+	s_methodPointers,
+	22,
+	s_adjustorThunks,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+};

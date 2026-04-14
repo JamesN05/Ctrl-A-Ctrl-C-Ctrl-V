@@ -1,0 +1,30 @@
+﻿  Building GameAssembly.dll with MsvcWinRtToolChain
+  	Msvc Install Version: 15.0
+  	Msvc Install SDK Directory: C:\Program Files (x86)\Windows Kits\10
+  	Msvc Linker Path: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX64\ARM\link.exe
+  	Msvc Compiler Path: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX64\ARM\cl.exe
+  
+  	Output directory: C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\build\bin\ARM\Release
+  	Cache directory: C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\build\obj\il2cppOutputProject\ARM\Release
+  ObjectFiles: 398 of which compiled: 0
+  Total compilation time: 157 milliseconds.
+  il2cpp.exe didn't catch exception: Unity.IL2CPP.Building.BuilderFailedException: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX64\ARM\link.exe /out:"C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\build\obj\il2cppOutputProject\ARM\Release\linkresult_C2CBC2F9B2525F2D42F9D9FE8EE81B72\GameAssembly.dll" /DEBUG /INCREMENTAL:NO /LARGEADDRESSAWARE /NXCOMPAT /DYNAMICBASE /NOLOGO /TLBID:1 /OPT:REF /OPT:ICF /OPT:LBR /DLL /IGNORE:4104 /NODEFAULTLIB:uuid.lib "Shcore.lib" "WindowsApp.lib" "Crypt32.lib" "Iphlpapi.lib" /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\ARM\store" /LIBPATH:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\arm" /LIBPATH:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\ucrt\arm" /APPCONTAINER /SUBSYSTEM:WINDOWS /NODEFAULTLIB:ole32.lib /NODEFAULTLIB:kernel32.lib @"C:\Users\james\AppData\Local\Temp\tmpE214.tmp"
+  
+LINK : fatal error LNK1181: cannot open input file 'Shcore.lib'
+  
+     at Unity.IL2CPP.Building.CppProgramBuilder.PostprocessObjectFiles(HashSet`1 objectFiles, CppToolChainContext toolChainContext)
+     at Unity.IL2CPP.Building.CppProgramBuilder.Build(IBuildStatistics& statistics)
+  
+  Unhandled Exception: Unity.IL2CPP.Building.BuilderFailedException: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX64\ARM\link.exe /out:"C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\build\obj\il2cppOutputProject\ARM\Release\linkresult_C2CBC2F9B2525F2D42F9D9FE8EE81B72\GameAssembly.dll" /DEBUG /INCREMENTAL:NO /LARGEADDRESSAWARE /NXCOMPAT /DYNAMICBASE /NOLOGO /TLBID:1 /OPT:REF /OPT:ICF /OPT:LBR /DLL /IGNORE:4104 /NODEFAULTLIB:uuid.lib "Shcore.lib" "WindowsApp.lib" "Crypt32.lib" "Iphlpapi.lib" /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\ARM\store" /LIBPATH:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\arm" /LIBPATH:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\ucrt\arm" /APPCONTAINER /SUBSYSTEM:WINDOWS /NODEFAULTLIB:ole32.lib /NODEFAULTLIB:kernel32.lib @"C:\Users\james\AppData\Local\Temp\tmpE214.tmp"
+  
+LINK : fatal error LNK1181: cannot open input file 'Shcore.lib'
+  
+     at Unity.IL2CPP.Building.CppProgramBuilder.PostprocessObjectFiles(HashSet`1 objectFiles, CppToolChainContext toolChainContext)
+     at Unity.IL2CPP.Building.CppProgramBuilder.Build(IBuildStatistics& statistics)
+     at il2cpp.Program.DoRun(String[] args, List`1 foundAssemblies)
+     at il2cpp.Program.Run(String[] args, Boolean setInvariantCulture)
+     at il2cpp.Program.Main(String[] args)
+     at il2cpp.Program.DoRun(String[] args, List`1 foundAssemblies)
+     at il2cpp.Program.Run(String[] args, Boolean setInvariantCulture)
+     at il2cpp.Program.Main(String[] args)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.MakeFile.Targets(46,5): error MSB3073: The command ""C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\Il2CppOutputProject\\IL2CPP\build\deploy\net471\il2cpp.exe" --libil2cpp-static --compile-cpp -architecture=ARMv7 -configuration=Release -platform=winrt -outputpath="C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\\build\bin\ARM\Release\GameAssembly.dll" --data-folder="C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\\build\bin\ARM\Release\\" -cachedirectory="C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\\build\obj\il2cppOutputProject\ARM\Release\\" -generatedcppdir="C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\Il2CppOutputProject\\Source"  --profiler-report --additional-defines=WINDOWS_UWP --additional-defines=UNITY_UWP --additional-defines=UNITY_WSA_10_0 --additional-defines=UNITY_WSA --additional-defines=UNITY_WINRT --additional-defines=PLATFORM_WINRT -dotnetprofile=unityaot -verbose --relative-data-path=Data/il2cpp_data --map-file-parser="C:\Code\Unity Projects\Ctrl-A-Ctrl-C-Ctrl-V\Build4\Il2CppOutputProject\\IL2CPP\MapFileParser\MapFileParser.exe"" exited with code -532462766.
