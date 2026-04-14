@@ -639,11 +639,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template3D
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 80f5710503e5dd01
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: JoggoARGlasses
@@ -698,7 +698,7 @@ PlayerSettings:
       UserNotificationListener: False
       VideosLibrary: False
       VoipCall: False
-      WebCam: False
+      WebCam: True
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: False
