@@ -2,40 +2,69 @@
 using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CameraFeed : MonoBehaviour
 {
+    //Connect to API via endpoint, api key and api secret key
     public string endpoint = "https://api-us.faceplusplus.com/facepp/v3/detect";
     public string apiKey = "-6UiFAngRexsAC7bf0TCsQlZR3SRIDrE";
     public string apiSecret = "8qppI6FWRY_lOZRsqPMbwljPv9LNNe0b";
 
-    WebCamTexture webCamTexture;  
-    
+    //create web cam texture
+    WebCamTexture webCamTexture;
+
+    //
+    public string savedToken = "b930fbf12082ad3f4c8a1eca6950f5b8";
+    string lastToken = "";
+
+    //API can't take too many requests simultaneously
+    //so requests will need to be halted/ delayed to give api a
+    //chance to send back responses. This boolean will stop
+    //processes between requests
+    bool wait = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Create a web cam feed object, replace quads material and texture with web cam
+        //and start live web cam feed video on quad
         webCamTexture = new WebCamTexture();
         GetComponent<Renderer>().material.mainTexture = webCamTexture;
         webCamTexture.Play();
 
-        InvokeRepeating(nameof(SendFrame), 3f, 5f);
+        //Wait 3 seconds before calling send frame and call it every 5 seconds after that
+        StartCoroutine(MainLoop());
     }
 
-    void SendFrame()
+    IEnumerator MainLoop()
     {
+        yield return new WaitForSeconds(3f);
+
+        while (true)
+        {
+            if (!wait)
+            {
+                yield return StartCoroutine(SendImage());
+            }
+
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+    //Capture the web cam feed and send to API
+    IEnumerator SendImage()
+    {
+        if (wait) yield break;
+
         if (webCamTexture.width < 100)
         {
             Debug.Log("Camera not ready yet...");
-            return;
+            yield break;
         }
 
-        Debug.Log("Resolution: " + webCamTexture.width + "x" + webCamTexture.height);
+        wait = true;
 
-        StartCoroutine(SendImage());
-    }
-
-    IEnumerator SendImage()
-    {
         int width = 640;
         int height = 480;
 
@@ -86,24 +115,41 @@ public class CameraFeed : MonoBehaviour
             Debug.Log("FACE DATA: " + unityWebRequest.downloadHandler.text);
         }
 
-        Debug.Log(unityWebRequest.downloadHandler.text);
         Debug.Log(unityWebRequest.responseCode);
 
         string json = unityWebRequest.downloadHandler.text;
-        Debug.Log("FACE DATA: " + json);
 
         FaceResponse faceResponse = JsonUtility.FromJson<FaceResponse>(json);
 
         if (faceResponse.faces != null && faceResponse.faces.Length > 0)
         {
-            FaceRectangle faceRectangle = faceResponse.faces[0].face_rectangle;
+            Face face = faceResponse.faces[0];
 
-            DrawFaceBox(faceRectangle);
+            DrawFaceBox(face.face_rectangle);
+
+            string liveToken = face.face_token;
+
+            if (liveToken != lastToken)
+            {
+                lastToken = liveToken;
+
+                //CompareAgainstDatabase(liveToken);
+                yield return StartCoroutine(CompareFaces(liveToken, savedToken));
+
+                /*foreach (var token in testTokens)
+                {
+                    StartCoroutine(CompareFaces(liveToken, token));
+                }*/
+            }
         }
         else
         {
             facebox.gameObject.SetActive(false);
         }
+
+        yield return new WaitForSeconds(6f);
+
+        wait = false;
     }
 
     // Update is called once per frame
@@ -127,6 +173,7 @@ public class CameraFeed : MonoBehaviour
     public class Face
     {
         public FaceRectangle face_rectangle;
+        public string face_token;
     }
 
     [System.Serializable]
@@ -164,5 +211,69 @@ public class CameraFeed : MonoBehaviour
 
         Debug.Log($"POS: {posX}, {posY} SIZE: {scaleX}, {scaleY}");
     }
+
+    float bestConfidence = 0f;
+    string bestMatch = "";
+
+    IEnumerator CompareFaces(string token1, string token2)
+    {
+        WWWForm form = new WWWForm();
+
+        form.AddField("api_key", apiKey);
+        form.AddField("api_secret", apiSecret);
+        form.AddField("face_token1", token1);
+        form.AddField("face_token2", token2);
+
+        UnityWebRequest req = UnityWebRequest.Post(
+            "https://api-us.faceplusplus.com/facepp/v3/compare",
+            form
+        );
+
+        yield return req.SendWebRequest();
+
+        string json = req.downloadHandler.text;
+        Debug.Log(json);
+
+        CompareResponse res = JsonUtility.FromJson<CompareResponse>(json);
+
+        if (res.confidence > bestConfidence)
+        {
+            bestConfidence = res.confidence;
+            bestMatch = token2;
+        }
+
+        Debug.Log($"Checked → {res.confidence}");
+    }
+
+    [System.Serializable]
+    public class CompareResponse
+    {
+        public float confidence;
+    }
+
+    void CompareAgainstDatabase(string liveToken)
+    {
+        foreach (var user in usersFromFirebase)
+        {
+            StartCoroutine(CompareFaces(liveToken, user.face_token));
+        }
+    }
+
+    [System.Serializable]
+    public class User
+    {
+        public string name;
+        public string face_token;
+    }
+
+    public List<User> usersFromFirebase = new List<User>();
+
+    /*public List<string> testTokens = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "b930fbf12082ad3f4c8a1eca6950f5b8"
+    };*/
 }
 
