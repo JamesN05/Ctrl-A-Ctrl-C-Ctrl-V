@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Android;
 using System.Collections.Generic;
 
 public class CameraFeed : MonoBehaviour
 {
     //Connect to API via endpoint, api key and api secret key
     public string endpoint = "https://api-us.faceplusplus.com/facepp/v3/detect";
-    public string apiKey = "-6UiFAngRexsAC7bf0TCsQlZR3SRIDrE";
-    public string apiSecret = "8qppI6FWRY_lOZRsqPMbwljPv9LNNe0b";
+    public string apiKey = "eyASoNalP-M7AUB8uSIFr_oEn08faV97";
+    public string apiSecret = "CReMsvBMe8PpOt5Sn2HCYKQmGsiEHpch";
 
     //create web cam texture
     WebCamTexture webCamTexture;
@@ -24,12 +24,21 @@ public class CameraFeed : MonoBehaviour
     //processes between requests
     bool wait = false;
 
+    float bestConfidence = 0f;
+    string bestMatch = "";
+    float lastCompareTime = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
+        {
+            Application.RequestUserAuthorization(UserAuthorization.WebCam);
+        }
+
         //Create a web cam feed object, replace quads material and texture with web cam
         //and start live web cam feed video on quad
-        webCamTexture = new WebCamTexture();
+        webCamTexture = new WebCamTexture(1280, 720);
         GetComponent<Renderer>().material.mainTexture = webCamTexture;
         webCamTexture.Play();
 
@@ -64,6 +73,9 @@ public class CameraFeed : MonoBehaviour
         }
 
         wait = true;
+
+        bestConfidence = 0f;
+        bestMatch = "";
 
         int width = 640;
         int height = 480;
@@ -106,7 +118,9 @@ public class CameraFeed : MonoBehaviour
 
         yield return unityWebRequest.SendWebRequest();
 
-        if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
+        Debug.Log(unityWebRequest.downloadHandler.text);
+
+        if (unityWebRequest.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("ERROR: " + unityWebRequest.error);
         }
@@ -129,9 +143,10 @@ public class CameraFeed : MonoBehaviour
 
             string liveToken = face.face_token;
 
-            if (liveToken != lastToken)
+            if (liveToken != lastToken && Time.time - lastCompareTime > 5f)
             {
                 lastToken = liveToken;
+                lastCompareTime = Time.time;
 
                 //CompareAgainstDatabase(liveToken);
                 yield return StartCoroutine(CompareFaces(liveToken, savedToken));
@@ -212,9 +227,6 @@ public class CameraFeed : MonoBehaviour
         Debug.Log($"POS: {posX}, {posY} SIZE: {scaleX}, {scaleY}");
     }
 
-    float bestConfidence = 0f;
-    string bestMatch = "";
-
     IEnumerator CompareFaces(string token1, string token2)
     {
         WWWForm form = new WWWForm();
@@ -229,7 +241,11 @@ public class CameraFeed : MonoBehaviour
             form
         );
 
-        yield return req.SendWebRequest();
+        if (req.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(req.error);
+            yield break;
+        }
 
         string json = req.downloadHandler.text;
         Debug.Log(json);
