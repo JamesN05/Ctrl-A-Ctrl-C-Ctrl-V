@@ -5,6 +5,7 @@ using TMPro;
 public class ToDoPanel : MonoBehaviour
 {
     [Header("UI References")]
+    public TMP_InputField taskInputField;
     public Button addButton;
     public Button closeButton;
     public Transform taskList;
@@ -13,28 +14,22 @@ public class ToDoPanel : MonoBehaviour
     [Header("Panel Reference")]
     public GameObject toDoPanelCanvas;
 
-    private TMP_InputField taskInputField;
-
     void Start()
     {
-        // Find input field automatically
-        taskInputField = GetComponentInChildren<TMP_InputField>();
+        if (addButton != null)
+            addButton.onClick.AddListener(AddTask);
 
-        addButton.onClick.AddListener(AddTask);
-        closeButton.onClick.AddListener(ClosePanel);
+        if (closeButton != null)
+            closeButton.onClick.AddListener(ClosePanel);
     }
 
     void AddTask()
     {
-        if (taskInputField == null) return;
-
-        string taskText = taskInputField.text.Trim();
-        if (string.IsNullOrEmpty(taskText)) return;
+        if (taskInputField == null || string.IsNullOrEmpty(taskInputField.text.Trim())) return;
 
         GameObject newTask = Instantiate(taskItemPrefab, taskList);
         TaskItem item = newTask.GetComponent<TaskItem>();
-        item.SetTask(taskText);
-
+        item.SetTask(taskInputField.text.Trim());
         taskInputField.text = "";
     }
 
