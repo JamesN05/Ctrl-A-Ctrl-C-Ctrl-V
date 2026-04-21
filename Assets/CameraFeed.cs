@@ -4,6 +4,7 @@ using OpenCVForUnity.ImgprocModule;
 using OpenCVForUnity.ObjdetectModule;
 using OpenCVForUnity.UnityUtils;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CameraFeed : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class CameraFeed : MonoBehaviour
     //Create tex for Texture2D
     Texture2D tex;
 
+    Texture2D referenceTexture;
+    Mat referenceMat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +34,6 @@ public class CameraFeed : MonoBehaviour
         webCamTexture = new WebCamTexture();
         rawImage.texture = webCamTexture;
         webCamTexture.Play();
-
-        //If the width is too small then the webcam isn't ready
-        if (webCamTexture.width < 100)
-        {
-            Debug.Log("Camera not ready");
-            return;
-        }
 
         //Creates a blank image in memorty with the same measurements as the webcam
         tex = new Texture2D(webCamTexture.width, webCamTexture.height);
@@ -60,6 +57,16 @@ public class CameraFeed : MonoBehaviour
             Debug.Log("Cascade loaded ✅");
         }
 
+        referenceTexture = Resources.Load<Texture2D>("DemoImage");
+
+        referenceMat = new Mat(referenceTexture.height, referenceTexture.width, CvType.CV_8UC3);
+        Utils.texture2DToMat(referenceTexture, referenceMat);
+
+        // Convert to grayscale
+        Imgproc.cvtColor(referenceMat, referenceMat, Imgproc.COLOR_RGB2GRAY);
+
+        Imgproc.resize(referenceMat, referenceMat, new Size(200, 200));
+
         //Wait 3 seconds before calling capture and detect and call it every 5 seconds after that
         InvokeRepeating(nameof(CaptureAndDetect), 3f, 8f);
     }
@@ -67,6 +74,10 @@ public class CameraFeed : MonoBehaviour
     //Take an image from the webcam, save it and find a face within the image
     void CaptureAndDetect()
     {
+
+        //If the width is too small then the webcam isn't ready
+        if (webCamTexture.width < 100) return;
+
         //Create an image of webcam frame and apply it to the texture of the RawImage
         tex.SetPixels32(webCamTexture.GetPixels32());
         tex.Apply();
@@ -123,6 +134,29 @@ public class CameraFeed : MonoBehaviour
         if (faces.toArray().Length > 0)
         {
             Debug.Log("FACE DETECTED ✅");
+
+            OpenCVForUnity.CoreModule.Rect faceRect = faces.toArray()[0];
+
+            // Crop detected face
+            Mat faceMat = new Mat(gray, faceRect).clone();
+
+            // Resize both images to same size
+            Imgproc.resize(faceMat, faceMat, new Size(200, 200));
+
+            double similarity = CompareFaces(faceMat, referenceMat);
+
+            Debug.Log("Similarity: " + similarity);
+
+            if (similarity > 0.7)
+            {
+                Debug.Log("MATCH ✅");
+            }
+            else
+            {
+                Debug.Log("NO MATCH ❌");
+            }
+
+            faceMat.Dispose();
         }
         else
         {
@@ -142,6 +176,35 @@ public class CameraFeed : MonoBehaviour
         {
             rawImage.texture = webCamTexture;
         }
+    }
+
+    double CompareFaces(Mat img1, Mat img2)
+    {
+        Mat hist1 = new Mat();
+        Mat hist2 = new Mat();
+
+        Imgproc.calcHist(
+            new List<Mat> { img1 },
+            new MatOfInt(0),
+            new Mat(),
+            hist1,
+            new MatOfInt(256),
+            new MatOfFloat(0, 256)
+        );
+
+        Imgproc.calcHist(
+            new List<Mat> { img2 },
+            new MatOfInt(0),
+            new Mat(),
+            hist2,
+            new MatOfInt(256),
+            new MatOfFloat(0, 256)
+        );
+
+        Core.normalize(hist1, hist1);
+        Core.normalize(hist2, hist2);
+
+        return Imgproc.compareHist(hist1, hist2, Imgproc.CV_COMP_CORREL);
     }
 }
 
