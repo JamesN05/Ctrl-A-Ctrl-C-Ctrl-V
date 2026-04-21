@@ -10,6 +10,7 @@ public class RegisterPersonManager : MonoBehaviour
     public GameObject step1Panel;
     public GameObject step2Panel;
     public GameObject step3Panel;
+    public GameObject savedPeoplePanel;
 
     [Header("Preview")]
     public RawImage photoPreview;
@@ -24,17 +25,17 @@ public class RegisterPersonManager : MonoBehaviour
     public Button captureButton;
     public Button retakeButton;
     public Button saveButton;
-    public Button refreshListButton;
+    public Button openSavedPeopleButton;
+    public Button closeSavedPeopleButton;
     public Button clearAllButton;
 
     [Header("Status")]
     public TMP_Text statusText;
-    public TMP_Text savePathText;
 
     [Header("Dependencies")]
     public DemoPhotoProvider photoProvider;
     public LocalPersonRepository repository;
-    public PeopleListDebugView debugView;
+    public SavedPeoplePanelController savedPeopleController;
 
     private Texture2D capturedTexture;
     private byte[] capturedJpgBytes;
@@ -43,13 +44,17 @@ public class RegisterPersonManager : MonoBehaviour
     private void Start()
     {
         ShowStep(1);
+        SetSavedPeoplePanel(false);
 
         captureButton.onClick.AddListener(OnCapturePressed);
         retakeButton.onClick.AddListener(OnRetakePressed);
         saveButton.onClick.AddListener(OnSavePressed);
 
-        if (refreshListButton != null)
-            refreshListButton.onClick.AddListener(OnRefreshListPressed);
+        if (openSavedPeopleButton != null)
+            openSavedPeopleButton.onClick.AddListener(OnOpenSavedPeoplePressed);
+
+        if (closeSavedPeopleButton != null)
+            closeSavedPeopleButton.onClick.AddListener(OnCloseSavedPeoplePressed);
 
         if (clearAllButton != null)
             clearAllButton.onClick.AddListener(OnClearAllPressed);
@@ -57,11 +62,8 @@ public class RegisterPersonManager : MonoBehaviour
         photoProvider.OnPhotoCaptured.AddListener(OnPhotoCaptured);
         photoProvider.OnCaptureFailed.AddListener(OnPhotoCaptureFailed);
 
-        if (savePathText != null)
-            savePathText.text = "Local save folder: " + repository.GetDebugPath();
-
-        if (debugView != null)
-            debugView.Refresh();
+        if (savedPeopleController != null)
+            savedPeopleController.Refresh();
     }
 
     private void ShowStep(int step)
@@ -69,6 +71,12 @@ public class RegisterPersonManager : MonoBehaviour
         if (step1Panel != null) step1Panel.SetActive(step == 1);
         if (step2Panel != null) step2Panel.SetActive(step == 2);
         if (step3Panel != null) step3Panel.SetActive(step == 3);
+    }
+
+    private void SetSavedPeoplePanel(bool isOpen)
+    {
+        if (savedPeoplePanel != null)
+            savedPeoplePanel.SetActive(isOpen);
     }
 
     private void SetStatus(string message)
@@ -81,7 +89,7 @@ public class RegisterPersonManager : MonoBehaviour
 
     public void OnCapturePressed()
     {
-        SetStatus("Capturing photo...");
+        SetStatus("Opening camera...");
         photoProvider.CapturePhoto();
     }
 
@@ -93,7 +101,7 @@ public class RegisterPersonManager : MonoBehaviour
         if (photoPreview != null)
             photoPreview.texture = capturedTexture;
 
-        SetStatus("Photo captured. Enter details.");
+        SetStatus("Photo ready");
         ShowStep(2);
     }
 
@@ -105,7 +113,7 @@ public class RegisterPersonManager : MonoBehaviour
 
     public void OnRetakePressed()
     {
-        SetStatus("Retake the photo.");
+        SetStatus("Retake photo");
         ShowStep(1);
     }
 
@@ -115,7 +123,7 @@ public class RegisterPersonManager : MonoBehaviour
             return;
 
         ShowStep(3);
-        SetStatus("Saving person locally...");
+        SetStatus("Saving...");
 
         List<float> encoding = faceEncoder.CreateEncoding(capturedJpgBytes);
 
@@ -133,60 +141,65 @@ public class RegisterPersonManager : MonoBehaviour
 
         repository.SavePerson(person, capturedJpgBytes);
 
-        SetStatus($"Saved {person.name} successfully.");
+        SetStatus($"{person.name} saved");
         ResetForm();
         ShowStep(1);
 
-        if (debugView != null)
-            debugView.Refresh();
+        if (savedPeopleController != null)
+            savedPeopleController.Refresh();
     }
 
-    public void OnRefreshListPressed()
+    public void OnOpenSavedPeoplePressed()
     {
-        if (debugView != null)
-            debugView.Refresh();
+        SetSavedPeoplePanel(true);
 
-        SetStatus("Saved people list refreshed.");
+        if (savedPeopleController != null)
+            savedPeopleController.Refresh();
+    }
+
+    public void OnCloseSavedPeoplePressed()
+    {
+        SetSavedPeoplePanel(false);
     }
 
     public void OnClearAllPressed()
     {
         repository.ClearAll();
 
-        if (debugView != null)
-            debugView.Refresh();
+        if (savedPeopleController != null)
+            savedPeopleController.Refresh();
 
         ResetForm();
         ShowStep(1);
-        SetStatus("All saved demo data cleared.");
+        SetStatus("All people cleared");
     }
 
     private bool ValidateForm()
     {
         if (capturedJpgBytes == null || capturedJpgBytes.Length == 0)
         {
-            SetStatus("Please capture a photo first.");
+            SetStatus("Capture a photo first");
             ShowStep(1);
             return false;
         }
 
         if (string.IsNullOrWhiteSpace(nameInput.text))
         {
-            SetStatus("Please enter a name.");
+            SetStatus("Enter a name");
             ShowStep(2);
             return false;
         }
 
         if (string.IsNullOrWhiteSpace(relationshipInput.text))
         {
-            SetStatus("Please enter a relationship.");
+            SetStatus("Enter a relationship");
             ShowStep(2);
             return false;
         }
 
         if (!consentToggle.isOn)
         {
-            SetStatus("Consent must be confirmed.");
+            SetStatus("Confirm consent");
             ShowStep(2);
             return false;
         }
