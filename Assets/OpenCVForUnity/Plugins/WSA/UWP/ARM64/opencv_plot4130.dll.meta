@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 5959790aab3c826448729d7be50582a4
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21088
+  packageName: OpenCV for Unity
+  packageVersion: 3.0.2
+  assetPath: Assets/OpenCVForUnity/Plugins/WSA/UWP/ARM64/opencv_plot4130.dll
+  uploadId: 846054
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 3
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 1
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 1
+      settings:
+        CPU: ARM64
+        SDK: UWP
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

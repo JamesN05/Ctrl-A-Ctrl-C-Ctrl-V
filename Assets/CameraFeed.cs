@@ -1,295 +1,147 @@
-﻿using System.Collections;
-using UnityEngine.Networking;
-using UnityEngine;
-using UnityEngine.Android;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using OpenCVForUnity.CoreModule;
+using OpenCVForUnity.ImgprocModule;
+using OpenCVForUnity.ObjdetectModule;
+using OpenCVForUnity.UnityUtils;
+using UnityEngine.UI;
 
 public class CameraFeed : MonoBehaviour
 {
-    //Connect to API via endpoint, api key and api secret key
-    public string endpoint = "https://api-us.faceplusplus.com/facepp/v3/detect";
-    public string apiKey = "eyASoNalP-M7AUB8uSIFr_oEn08faV97";
-    public string apiSecret = "CReMsvBMe8PpOt5Sn2HCYKQmGsiEHpch";
-
+    //Creates Rawimage variable
+    public RawImage rawImage;
     //create web cam texture
     WebCamTexture webCamTexture;
 
-    //
-    public string savedToken = "b930fbf12082ad3f4c8a1eca6950f5b8";
-    string lastToken = "";
+    //Create the face detection model
+    CascadeClassifier faceCascade;
 
-    //API can't take too many requests simultaneously
-    //so requests will need to be halted/ delayed to give api a
-    //chance to send back responses. This boolean will stop
-    //processes between requests
-    bool wait = false;
-
-    float bestConfidence = 0f;
-    string bestMatch = "";
-    float lastCompareTime = 0f;
+    //Create tex for Texture2D
+    Texture2D tex;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
-        {
-            Application.RequestUserAuthorization(UserAuthorization.WebCam);
-        }
+        //Force target frame rate v sync off in unity
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
 
         //Create a web cam feed object, replace quads material and texture with web cam
-        //and start live web cam feed video on quad
-        webCamTexture = new WebCamTexture(1280, 720);
-        GetComponent<Renderer>().material.mainTexture = webCamTexture;
+        //and start live web cam feed video on the RawImage
+        webCamTexture = new WebCamTexture();
+        rawImage.texture = webCamTexture;
         webCamTexture.Play();
 
-        //Wait 3 seconds before calling send frame and call it every 5 seconds after that
-        StartCoroutine(MainLoop());
-    }
-
-    IEnumerator MainLoop()
-    {
-        yield return new WaitForSeconds(3f);
-
-        while (true)
-        {
-            if (!wait)
-            {
-                yield return StartCoroutine(SendImage());
-            }
-
-            yield return new WaitForSeconds(5f);
-        }
-    }
-
-    //Capture the web cam feed and send to API
-    IEnumerator SendImage()
-    {
-        if (wait) yield break;
-
+        //If the width is too small then the webcam isn't ready
         if (webCamTexture.width < 100)
         {
-            Debug.Log("Camera not ready yet...");
-            yield break;
+            Debug.Log("Camera not ready");
+            return;
         }
 
-        wait = true;
+        //Creates a blank image in memorty with the same measurements as the webcam
+        tex = new Texture2D(webCamTexture.width, webCamTexture.height);
 
-        bestConfidence = 0f;
-        bestMatch = "";
+        //Load the face detection file
+        string cascadePath = Utils.getFilePath("haarcascade_frontalface_default.xml");
 
-        int width = 640;
-        int height = 480;
+        //Debug to see if haarcascade_frontalface_default.xml can be reached
+        Debug.Log("Cascade path: " + cascadePath);
 
-        // scale pixels manually
-        Color32[] pixels = webCamTexture.GetPixels32();
-        Color32[] resized = new Color32[width * height];
+        //Loads the face detection model into Unity
+        faceCascade = new CascadeClassifier(cascadePath);
 
-        float ratioX = (float)webCamTexture.width / width;
-        float ratioY = (float)webCamTexture.height / height;
-
-        for (int y = 0; y < height; y++)
+        //Debug to see if the face detection model can be loaded
+        if (faceCascade.empty())
         {
-            for (int x = 0; x < width; x++)
-            {
-                int px = (int)(x * ratioX);
-                int py = (int)(y * ratioY);
-
-                resized[y * width + x] = pixels[py * webCamTexture.width + px];
-            }
+            Debug.LogError("Cascade failed to load ❌");
+        }
+        else
+        {
+            Debug.Log("Cascade loaded ✅");
         }
 
-        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-        tex.SetPixels32(resized);
+        //Wait 3 seconds before calling capture and detect and call it every 5 seconds after that
+        InvokeRepeating(nameof(CaptureAndDetect), 3f, 8f);
+    }
+
+    //Take an image from the webcam, save it and find a face within the image
+    void CaptureAndDetect()
+    {
+        //Create an image of webcam frame and apply it to the texture of the RawImage
+        tex.SetPixels32(webCamTexture.GetPixels32());
         tex.Apply();
 
-        byte[] jpg = tex.EncodeToJPG(90);
+        //Debug for camera width, height and fps for when web cam was stuttering
+        Debug.Log(webCamTexture.requestedFPS);
+        Debug.Log(webCamTexture.width + "x" + webCamTexture.height);
 
-        Debug.Log("Image size: " + jpg.Length);
+        //Create image for saving to file
+        byte[] bytes = tex.EncodeToJPG();
 
-        string base64Image = System.Convert.ToBase64String(jpg);
+        //Directory for Saved Faces folder
+        string folderPath = Application.persistentDataPath + "/Saved Faces";
 
-        WWWForm form = new WWWForm();
-        form.AddField("api_key", apiKey);
-        form.AddField("api_secret", apiSecret);
-        form.AddField("image_base64", base64Image);
-        form.AddField("return_attributes", "age,gender,emotion");
-
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post(endpoint, form);
-
-        yield return unityWebRequest.SendWebRequest();
-
-        Debug.Log(unityWebRequest.downloadHandler.text);
-
-        if (unityWebRequest.result != UnityWebRequest.Result.Success)
+        //If directory doesn't exist create it
+        if (!System.IO.Directory.Exists(folderPath))
         {
-            Debug.LogError("ERROR: " + unityWebRequest.error);
+            System.IO.Directory.CreateDirectory(folderPath);
+        }
+
+        //Path for file
+        string path = folderPath + "/Person.jpg";
+
+        //Create jpg image in specified path
+        System.IO.File.WriteAllBytes(path, bytes);
+
+        //Debug to see where image was saved
+        Debug.Log("Saved image to: " + path);
+
+        //Converts image from unity image to OpenCV image
+        Mat mat = new Mat(tex.height, tex.width, CvType.CV_8UC3);
+        Utils.texture2DToMat(tex, mat);
+
+        //Flip image for face detection
+        Core.flip(mat, mat, 1);
+
+        // Convert to grayscale
+        Mat gray = new Mat();
+        Imgproc.cvtColor(mat, gray, Imgproc.COLOR_RGB2GRAY);
+
+        //Face detection using OpenCV
+        MatOfRect faces = new MatOfRect();
+        faceCascade.detectMultiScale(
+            gray,
+            faces,
+            1.1,
+            3,
+            0,
+            new Size(100, 100),
+            new Size()
+        );
+
+        //Debug to see if face has been detected in frame
+        if (faces.toArray().Length > 0)
+        {
+            Debug.Log("FACE DETECTED ✅");
         }
         else
         {
-            Debug.Log("FACE DATA: " + unityWebRequest.downloadHandler.text);
+            Debug.Log("NO FACE ❌");
         }
 
-        Debug.Log(unityWebRequest.responseCode);
-
-        string json = unityWebRequest.downloadHandler.text;
-
-        FaceResponse faceResponse = JsonUtility.FromJson<FaceResponse>(json);
-
-        if (faceResponse.faces != null && faceResponse.faces.Length > 0)
-        {
-            Face face = faceResponse.faces[0];
-
-            DrawFaceBox(face.face_rectangle);
-
-            string liveToken = face.face_token;
-
-            if (liveToken != lastToken && Time.time - lastCompareTime > 5f)
-            {
-                lastToken = liveToken;
-                lastCompareTime = Time.time;
-
-                //CompareAgainstDatabase(liveToken);
-                yield return StartCoroutine(CompareFaces(liveToken, savedToken));
-
-                /*foreach (var token in testTokens)
-                {
-                    StartCoroutine(CompareFaces(liveToken, token));
-                }*/
-            }
-        }
-        else
-        {
-            facebox.gameObject.SetActive(false);
-        }
-
-        yield return new WaitForSeconds(6f);
-
-        wait = false;
+        //Remove image from memory
+        mat.Dispose();
+        gray.Dispose();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public Transform facebox;
-
-    [System.Serializable]
-    public class FaceRectangle
-    {
-        public int top;
-        public int left;
-        public int width;
-        public int height;
-    }
-
-    [System.Serializable]
-    public class Face
-    {
-        public FaceRectangle face_rectangle;
-        public string face_token;
-    }
-
-    [System.Serializable]
-    public class FaceResponse
-    {
-        public Face[] faces;
-    }
-    void DrawFaceBox(FaceRectangle rect)
-    {
-        facebox.gameObject.SetActive(true);
-
-        float camWidth = 640f;
-        float camHeight = 480f;
-
-        //Convert API coordinates to Unity UI coordinates
-        float x = rect.left / camWidth;
-        float y = rect.top / camHeight;
-        float w = rect.width / camWidth;
-        float h = rect.height / camHeight;
-
-        y = 1f - y - h;
-        //x = 1f - x - w;
-
-        float quadWidth = transform.localScale.x; ;
-        float quadHeight = transform.localScale.y;
-
-        float posX = (x - 0.5f + w * 0.5f) * quadWidth;
-        float posY = (y - 0.5f + h * 0.5f) * quadHeight;
-
-        float scaleX = w * quadWidth;
-        float scaleY = h * quadHeight;
-
-        facebox.transform.localPosition = new Vector3(posX, posY, -0.01f);
-        facebox.transform.localScale = new Vector3(scaleX, scaleY, 1f);
-
-        Debug.Log($"POS: {posX}, {posY} SIZE: {scaleX}, {scaleY}");
-    }
-
-    IEnumerator CompareFaces(string token1, string token2)
-    {
-        WWWForm form = new WWWForm();
-
-        form.AddField("api_key", apiKey);
-        form.AddField("api_secret", apiSecret);
-        form.AddField("face_token1", token1);
-        form.AddField("face_token2", token2);
-
-        UnityWebRequest req = UnityWebRequest.Post(
-            "https://api-us.faceplusplus.com/facepp/v3/compare",
-            form
-        );
-
-        if (req.result != UnityWebRequest.Result.Success)
+        //Set web cam texture to raw image
+        if (webCamTexture != null && webCamTexture.didUpdateThisFrame)
         {
-            Debug.LogError(req.error);
-            yield break;
-        }
-
-        string json = req.downloadHandler.text;
-        Debug.Log(json);
-
-        CompareResponse res = JsonUtility.FromJson<CompareResponse>(json);
-
-        if (res.confidence > bestConfidence)
-        {
-            bestConfidence = res.confidence;
-            bestMatch = token2;
-        }
-
-        Debug.Log($"Checked → {res.confidence}");
-    }
-
-    [System.Serializable]
-    public class CompareResponse
-    {
-        public float confidence;
-    }
-
-    void CompareAgainstDatabase(string liveToken)
-    {
-        foreach (var user in usersFromFirebase)
-        {
-            StartCoroutine(CompareFaces(liveToken, user.face_token));
+            rawImage.texture = webCamTexture;
         }
     }
-
-    [System.Serializable]
-    public class User
-    {
-        public string name;
-        public string face_token;
-    }
-
-    public List<User> usersFromFirebase = new List<User>();
-
-    /*public List<string> testTokens = new List<string>()
-    {
-        "",
-        "",
-        "",
-        "b930fbf12082ad3f4c8a1eca6950f5b8"
-    };*/
 }
 

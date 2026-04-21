@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9ad508f9e9d19104385cb407bd229115
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21088
+  packageName: OpenCV for Unity
+  packageVersion: 3.0.2
+  assetPath: Assets/OpenCVForUnity/org/opencv_contrib/saliency/MotionSaliency.cs
+  uploadId: 846054
