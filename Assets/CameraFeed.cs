@@ -10,17 +10,20 @@ public class CameraFeed : MonoBehaviour
 {
     //Creates Rawimage variable
     public RawImage rawImage;
+    public GameObject registerPanel;
+
     //create web cam texture
     WebCamTexture webCamTexture;
-
     //Create the face detection model
     CascadeClassifier faceCascade;
-
     //Create tex for Texture2D
     Texture2D tex;
-
     Texture2D referenceTexture;
     Mat referenceMat;
+    Mat pendingFace;
+    List<Mat> knownFaces = new List<Mat>();
+    List<string> knownNames = new List<string>();
+    bool isPromptActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -64,8 +67,10 @@ public class CameraFeed : MonoBehaviour
 
         // Convert to grayscale
         Imgproc.cvtColor(referenceMat, referenceMat, Imgproc.COLOR_RGB2GRAY);
-
         Imgproc.resize(referenceMat, referenceMat, new Size(200, 200));
+
+        knownFaces.Add(referenceMat);
+        knownNames.Add("DemoUser");
 
         //Wait 3 seconds before calling capture and detect and call it every 5 seconds after that
         InvokeRepeating(nameof(CaptureAndDetect), 3f, 8f);
@@ -114,7 +119,7 @@ public class CameraFeed : MonoBehaviour
         //Flip image for face detection
         Core.flip(mat, mat, 1);
 
-        // Convert to grayscale
+        //Convert to grayscale
         Mat gray = new Mat();
         Imgproc.cvtColor(mat, gray, Imgproc.COLOR_RGB2GRAY);
 
@@ -137,23 +142,36 @@ public class CameraFeed : MonoBehaviour
 
             OpenCVForUnity.CoreModule.Rect faceRect = faces.toArray()[0];
 
-            // Crop detected face
+            //Crop detected face
             Mat faceMat = new Mat(gray, faceRect).clone();
 
-            // Resize both images to same size
+            //Resize both images to same size
             Imgproc.resize(faceMat, faceMat, new Size(200, 200));
 
-            double similarity = CompareFaces(faceMat, referenceMat);
+            double bestScore = 0;
+            string bestMatch = "Unknown";
 
-            Debug.Log("Similarity: " + similarity);
-
-            if (similarity > 0.7)
+            for (int i = 0; i < knownFaces.Count; i++)
             {
-                Debug.Log("MATCH ✅");
+                double score = CompareFaces(faceMat, knownFaces[i]);
+
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestMatch = knownNames[i];
+                }
+            }
+
+            Debug.Log("Best Score: " + bestScore);
+
+            if (bestScore > 0.7)
+            {
+                Debug.Log("MATCH ✅ → " + bestMatch);
             }
             else
             {
-                Debug.Log("NO MATCH ❌");
+                Debug.Log("UNKNOWN PERSON ❌");
+                ShowRegisterPrompt(faceMat);
             }
 
             faceMat.Dispose();
@@ -205,6 +223,31 @@ public class CameraFeed : MonoBehaviour
         Core.normalize(hist2, hist2);
 
         return Imgproc.compareHist(hist1, hist2, Imgproc.CV_COMP_CORREL);
+    }
+
+    void ShowRegisterPrompt(Mat faceMat)
+    {
+        if (isPromptActive) return;
+
+        isPromptActive = true;
+        registerPanel.SetActive(true);
+
+        //Store face temporarily for saving
+        pendingFace = faceMat.clone();
+    }
+
+    public void OnRegisterYes()
+    {
+        //PlaceholderSaveNewPerson(pendingFace);
+        isPromptActive = false;
+        registerPanel.SetActive(false);
+    }
+
+    public void OnRegisterNo()
+    {
+        pendingFace.Dispose();
+        isPromptActive = false;
+        registerPanel.SetActive(false);
     }
 }
 
