@@ -41,30 +41,44 @@ public class RegisterPersonManager : MonoBehaviour
     private byte[] capturedJpgBytes;
     private readonly MockFaceEncoder faceEncoder = new MockFaceEncoder();
 
-    private void Start()
+   private void Start()
+{
+    Debug.Log("=== START RUNNING ===");
+    Debug.Log("captureButton: " + captureButton);
+    Debug.Log("photoProvider: " + photoProvider);
+    Debug.Log("savedPeoplePanel: " + savedPeoplePanel);
+
+    ShowStep(1);
+    SetSavedPeoplePanel(false);
+
+    if (captureButton != null) captureButton.onClick.AddListener(OnCapturePressed);
+    else Debug.LogError("captureButton is NULL");
+
+    if (retakeButton != null) retakeButton.onClick.AddListener(OnRetakePressed);
+    else Debug.LogError("retakeButton is NULL");
+
+    if (saveButton != null) saveButton.onClick.AddListener(OnSavePressed);
+    else Debug.LogError("saveButton is NULL");
+
+    if (openSavedPeopleButton != null)
+        openSavedPeopleButton.onClick.AddListener(OnOpenSavedPeoplePressed);
+
+    if (closeSavedPeopleButton != null)
+        closeSavedPeopleButton.onClick.AddListener(OnCloseSavedPeoplePressed);
+
+    if (clearAllButton != null)
+        clearAllButton.onClick.AddListener(OnClearAllPressed);
+
+    if (photoProvider != null)
     {
-        ShowStep(1);
-        SetSavedPeoplePanel(false);
-
-        captureButton.onClick.AddListener(OnCapturePressed);
-        retakeButton.onClick.AddListener(OnRetakePressed);
-        saveButton.onClick.AddListener(OnSavePressed);
-
-        if (openSavedPeopleButton != null)
-            openSavedPeopleButton.onClick.AddListener(OnOpenSavedPeoplePressed);
-
-        if (closeSavedPeopleButton != null)
-            closeSavedPeopleButton.onClick.AddListener(OnCloseSavedPeoplePressed);
-
-        if (clearAllButton != null)
-            clearAllButton.onClick.AddListener(OnClearAllPressed);
-
         photoProvider.OnPhotoCaptured.AddListener(OnPhotoCaptured);
         photoProvider.OnCaptureFailed.AddListener(OnPhotoCaptureFailed);
-
-        if (savedPeopleController != null)
-            savedPeopleController.Refresh();
     }
+    else Debug.LogError("photoProvider is NULL");
+
+    if (savedPeopleController != null)
+        savedPeopleController.Refresh();
+}
 
     private void ShowStep(int step)
     {
@@ -150,12 +164,15 @@ public class RegisterPersonManager : MonoBehaviour
     }
 
     public void OnOpenSavedPeoplePressed()
-    {
-        SetSavedPeoplePanel(true);
+{
+    Debug.Log("Open pressed, calling Refresh");
+    SetSavedPeoplePanel(true);
 
-        if (savedPeopleController != null)
-            savedPeopleController.Refresh();
-    }
+    if (savedPeopleController != null)
+        savedPeopleController.Refresh();
+    else
+        Debug.LogError("savedPeopleController is NULL");
+}
 
     public void OnCloseSavedPeoplePressed()
     {
