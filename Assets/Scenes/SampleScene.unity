@@ -1165,7 +1165,7 @@ GameObject:
   m_Layer: 5
   m_Name: AddPersonPanel
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -1378,8 +1378,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 0
+  m_fontSizeBase: 0
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1586,7 +1586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 140}
+  m_AnchoredPosition: {x: -180, y: 140}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546765666
@@ -2481,9 +2481,9 @@ RectTransform:
   - {fileID: 1235893756}
   - {fileID: 1595857166}
   - {fileID: 400350671}
-  - {fileID: 473134478}
   - {fileID: 1924556287}
   - {fileID: 1665417146}
+  - {fileID: 473134478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2784,9 +2784,15 @@ MonoBehaviour:
   relationshipInput: {fileID: 1761437125}
   bioInput: {fileID: 199184662}
   placeholderName: John Doe
-  placeholderRelationship: Colleague
-  placeholderBio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. This person
-    is known for their work in software development.
+  placeholderRelationship: 'Relationship: Good Friend'
+  placeholderBio: '- You met in college
+
+
+    - You did the same course.
+
+
+    -
+    You speak about foot ball.'
 --- !u!1 &1113290443
 GameObject:
   m_ObjectHideFlags: 0
