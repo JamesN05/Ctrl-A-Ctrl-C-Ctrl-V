@@ -24,6 +24,7 @@ public class CameraFeed : MonoBehaviour
     List<Mat> knownFaces = new List<Mat>();
     List<string> knownNames = new List<string>();
     bool isPromptActive = false;
+    bool isFaceVisible = false;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +72,8 @@ public class CameraFeed : MonoBehaviour
 
         knownFaces.Add(referenceMat);
         knownNames.Add("DemoUser");
+
+        OnNoFaceDetected();
 
         //Wait 3 seconds before calling capture and detect and call it every 5 seconds after that
         InvokeRepeating(nameof(CaptureAndDetect), 3f, 8f);
@@ -138,6 +141,8 @@ public class CameraFeed : MonoBehaviour
         //Debug to see if face has been detected in frame
         if (faces.toArray().Length > 0)
         {
+            isFaceVisible = true;
+
             Debug.Log("FACE DETECTED ✅");
 
             OpenCVForUnity.CoreModule.Rect faceRect = faces.toArray()[0];
@@ -179,6 +184,12 @@ public class CameraFeed : MonoBehaviour
         else
         {
             Debug.Log("NO FACE ❌");
+
+            if (isFaceVisible)
+            {
+                isFaceVisible = false;
+                OnNoFaceDetected();
+            }
         }
 
         //Remove image from memory
@@ -248,6 +259,13 @@ public class CameraFeed : MonoBehaviour
         pendingFace.Dispose();
         isPromptActive = false;
         registerPanel.SetActive(false);
+    }
+
+    void OnNoFaceDetected()
+    {
+        Debug.Log("NO FACE MODE 💤");
+
+        //Insert fallback UI to-do list, time ect. here
     }
 }
 
