@@ -203,7 +203,7 @@ public class CameraFeed : MonoBehaviour
             Debug.Log("Label: " + predictedLabel[0]);
             Debug.Log("Confidence: " + confidence[0]);
 
-            if (confidence[0] < 80)
+            if (confidence[0] < 100)
             {
                 profilePanel.profilePanelCanvas.SetActive(true);
                 profilePanel.LoadProfile(
