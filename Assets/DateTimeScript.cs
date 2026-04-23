@@ -13,6 +13,7 @@ public class DateTimeScript : MonoBehaviour
     [SerializeField] private bool showSecs = true;
     [SerializeField] private bool showTime = true;
     [SerializeField] private bool use24Hr = true;
+    [SerializeField] private bool showUptime = true;
 
     //this will update the timer every second
     [SerializeField] private float updateInterval = 1f;
