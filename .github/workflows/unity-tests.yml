@@ -13,6 +13,10 @@ jobs:
   test:
     name: Run Unity EditMode Tests
     runs-on: ubuntu-latest
+    permissions: 
+      checks: write
+      statuses: write
+      contents: read
 
     steps:
       - name: Checkout repository
