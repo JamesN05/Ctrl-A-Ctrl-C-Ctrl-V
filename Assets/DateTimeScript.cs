@@ -19,6 +19,8 @@ public class DateTimeScript : MonoBehaviour
 
     private float timer = 0f;
 
+    private float totalUptime = 0f;
+
     // this func will show the timer on launch so the text isn't blank
     private void Start()
     {
@@ -27,6 +29,8 @@ public class DateTimeScript : MonoBehaviour
 
     private void Update()
     {
+        totalUptime += Time.deltaTime;
+        
         timer += Time.deltaTime;
         if (timer >= updateInterval)
         {
@@ -76,6 +80,24 @@ public class DateTimeScript : MonoBehaviour
             }
         }
 
+         // add uptime on a new line below the time
+         if (showUptime)
+         {
+             int hours = (int)(totalUptime / 3600);
+             int minutes = (int)((totalUptime % 3600) / 60);
+             int seconds = (int)(totalUptime % 60);
+        
+             display += "\n";
+             display += string.Format("Uptime: {0:00}:{1:00}:{2:00}",
+                 hours, minutes, seconds);
+         }
+
         dateTimeText.text = display;
+    }
+
+    // public getter so other scripts can read the uptime value if needed
+    public float GetUptimeSeconds()
+    {
+        return totalUptime;
     }
 }
