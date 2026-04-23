@@ -35,3 +35,11 @@ jobs:
         with:
           projectPath: .
           targetPlatform: StandaloneWindows64
+          buildName: JoggoAR
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: JoggoAR-Windows
+          path: build/StandaloneWindows64
+          retention-days: 7
