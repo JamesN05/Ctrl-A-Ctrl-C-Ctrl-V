@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 4405bb59e207b244db4825f1b104b504
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21088
+  packageName: OpenCV for Unity
+  packageVersion: 3.0.2
+  assetPath: Assets/OpenCVForUnity/Plugins/WSA/UWP/x86/opencv_calib3d4130.dll
+  uploadId: 846054
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 3
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 1
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 1
+      settings:
+        CPU: x86
+        SDK: UWP
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

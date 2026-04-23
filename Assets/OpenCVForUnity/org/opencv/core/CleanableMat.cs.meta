@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b3fce1a322924054cb9f4a564b2218b4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21088
+  packageName: OpenCV for Unity
+  packageVersion: 3.0.2
+  assetPath: Assets/OpenCVForUnity/org/opencv/core/CleanableMat.cs
+  uploadId: 846054
