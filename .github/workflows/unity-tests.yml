@@ -40,3 +40,4 @@ jobs:
           projectPath: .
           testMode: editmode
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artifactsPath: artifacts/editmode
