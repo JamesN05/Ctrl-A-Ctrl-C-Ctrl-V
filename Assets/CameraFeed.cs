@@ -14,6 +14,9 @@ public class CameraFeed : MonoBehaviour
     public GameObject registerPanel;
     public ProfilePanelUI profilePanel;
     public ToDoPanel toDoPanel;
+    public GameObject peopleRegistryUI;
+    public RegisterPersonManager registerManager;
+    public LocalPersonRepository repository;
 
     //create web cam texture
     WebCamTexture webCamTexture;
@@ -27,6 +30,8 @@ public class CameraFeed : MonoBehaviour
     Mat pendingFace;
     bool isPromptActive = false;
     bool isFaceVisible = false;
+    bool isInPeopleRegistry = false;
+    Dictionary<int, PersonRecord> labelToPerson = new Dictionary<int, PersonRecord>();
 
     // Start is called before the first frame update
     void Start()
@@ -61,44 +66,7 @@ public class CameraFeed : MonoBehaviour
         }
 
         recognizer = LBPHFaceRecognizer.create();
-
-        //Prepare training data
-        List<Mat> images = new List<Mat>();
-        List<int> labels = new List<int>();
-
-        referenceTexture = Resources.Load<Texture2D>("DemoImage");
-
-        Mat refMat = new Mat(referenceTexture.height, referenceTexture.width, CvType.CV_8UC3);
-        Utils.texture2DToMat(referenceTexture, refMat);
-
-        //Convert to grayscale
-        Mat grayRef = new Mat();
-        Imgproc.cvtColor(refMat, grayRef, Imgproc.COLOR_RGB2GRAY);
-
-        //Detect face in reference image
-        MatOfRect refFaces = new MatOfRect();
-        faceCascade.detectMultiScale(grayRef, refFaces);
-
-        if (refFaces.toArray().Length > 0)
-        {
-            OpenCVForUnity.CoreModule.Rect r = refFaces.toArray()[0];
-
-            Mat face = new Mat(grayRef, r).clone();
-
-            Imgproc.resize(face, face, new Size(200, 200));
-            Imgproc.equalizeHist(face, face);
-
-            images.Add(face);
-            labels.Add(0);
-
-            recognizer.train(images, new MatOfInt(labels.ToArray()));
-
-            Debug.Log("LBPH trained ✅");
-        }
-        else
-        {
-            Debug.LogError("No face found in reference image ❌");
-        }
+        LoadSavedFaces();
 
         OnNoFaceDetected();
 
@@ -109,6 +77,8 @@ public class CameraFeed : MonoBehaviour
     //Take an image from the webcam, save it and find a face within the image
     void CaptureAndDetect()
     {
+
+        if (isInPeopleRegistry) return;
 
         //If the width is too small then the webcam isn't ready
         if (webCamTexture.width < 100) return;
@@ -126,27 +96,6 @@ public class CameraFeed : MonoBehaviour
         //Debug for camera width, height and fps for when web cam was stuttering
         Debug.Log(webCamTexture.requestedFPS);
         Debug.Log(webCamTexture.width + "x" + webCamTexture.height);
-
-        //Create image for saving to file
-        byte[] bytes = tex.EncodeToJPG();
-
-        //Directory for Saved Faces folder
-        string folderPath = Application.persistentDataPath + "/Saved Faces";
-
-        //If directory doesn't exist create it
-        if (!System.IO.Directory.Exists(folderPath))
-        {
-            System.IO.Directory.CreateDirectory(folderPath);
-        }
-
-        //Path for file
-        string path = folderPath + "/Person.jpg";
-
-        //Create jpg image in specified path
-        System.IO.File.WriteAllBytes(path, bytes);
-
-        //Debug to see where image was saved
-        Debug.Log("Saved image to: " + path);
 
         //Converts image from unity image to OpenCV image
         Mat mat = new Mat(tex.height, tex.width, CvType.CV_8UC3);
@@ -203,14 +152,25 @@ public class CameraFeed : MonoBehaviour
             Debug.Log("Label: " + predictedLabel[0]);
             Debug.Log("Confidence: " + confidence[0]);
 
-            if (confidence[0] < 100)
+            if (confidence[0] < 90)
             {
-                profilePanel.profilePanelCanvas.SetActive(true);
-                profilePanel.LoadProfile(
-                    "Demo Person",
-                    "Friend",
-                    "Recognised via OpenCV"
-                );
+                if (labelToPerson.ContainsKey(predictedLabel[0]))
+                {
+                    var person = labelToPerson[predictedLabel[0]];
+
+                    profilePanel.profilePanelCanvas.SetActive(true);
+
+                    profilePanel.LoadProfile(
+                        person.name,
+                        person.relationship,
+                        person.reminder
+                    );
+                }
+                else
+                {
+                    Debug.LogWarning("Label not found in dictionary");
+                }
+
                 if (toDoPanel != null)
                     toDoPanel.toDoPanelCanvas.SetActive(false);
             }
@@ -218,7 +178,8 @@ public class CameraFeed : MonoBehaviour
             {
                 Debug.Log("UNKNOWN PERSON ❌");
 
-                ShowRegisterPrompt(faceMat);
+                if (!isInPeopleRegistry)
+                    ShowRegisterPrompt(faceMat);
             }
 
             faceMat.Dispose();
@@ -262,9 +223,22 @@ public class CameraFeed : MonoBehaviour
 
     public void OnRegisterYes()
     {
-        //PlaceholderSaveNewPerson(pendingFace);
         isPromptActive = false;
         registerPanel.SetActive(false);
+        isInPeopleRegistry = true;
+
+        //Convert Mat → Texture2D
+        Texture2D tex = new Texture2D(pendingFace.cols(), pendingFace.rows(), TextureFormat.RGB24, false);
+        Utils.matToTexture2D(pendingFace, tex);
+
+        //Convert Texture2D → JPG bytes
+        byte[] jpgBytes = tex.EncodeToJPG();
+
+        //Inject directly into his system
+        registerManager.OnPhotoCaptured(tex, jpgBytes);
+
+        //Open UI
+        peopleRegistryUI.SetActive(true);
     }
 
     public void OnRegisterNo()
@@ -284,5 +258,92 @@ public class CameraFeed : MonoBehaviour
         if (profilePanel != null)
             profilePanel.profilePanelCanvas.SetActive(false);
     }
-}
 
+    public Texture2D GetCurrentFrame()
+    {
+        if (tex == null) return null;
+        return tex;
+    }
+
+    public void OnClosePeopleRegistry()
+    {
+        isInPeopleRegistry = false;
+        peopleRegistryUI.SetActive(false);
+    }
+
+    void LoadSavedFaces()
+    {
+        if (repository == null)
+        {
+            Debug.LogError("Repository not assigned ❌");
+            return;
+        }
+
+        var people = repository.GetAllPeople();
+
+        if (people == null || people.Count == 0)
+        {
+            Debug.Log("No saved people found");
+            return;
+        }
+
+        List<Mat> images = new List<Mat>();
+        List<int> labels = new List<int>();
+
+        int label = 0;
+
+        foreach (var person in people)
+        {
+            if (string.IsNullOrEmpty(person.photoPath) || !System.IO.File.Exists(person.photoPath))
+            {
+                Debug.LogWarning($"Image not found for {person.name}");
+                continue;
+            }
+
+            byte[] imageBytes = System.IO.File.ReadAllBytes(person.photoPath);
+
+            if (imageBytes == null) continue;
+
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(imageBytes);
+
+            Mat mat = new Mat(tex.height, tex.width, CvType.CV_8UC3);
+            Utils.texture2DToMat(tex, mat);
+
+            Mat gray = new Mat();
+            Imgproc.cvtColor(mat, gray, Imgproc.COLOR_RGB2GRAY);
+
+            MatOfRect faces = new MatOfRect();
+            faceCascade.detectMultiScale(gray, faces);
+
+            if (faces.toArray().Length == 0)
+            {
+                Debug.LogWarning($"No face found for {person.name}");
+                continue;
+            }
+
+            var r = faces.toArray()[0];
+            Mat face = new Mat(gray, r).clone();
+
+            Imgproc.resize(face, face, new Size(200, 200));
+            Imgproc.equalizeHist(face, face);
+
+            images.Add(face);
+            labels.Add(label);
+
+            labelToPerson[label] = person;
+
+            label++;
+        }
+
+        if (images.Count > 0)
+        {
+            recognizer.train(images, new MatOfInt(labels.ToArray()));
+            Debug.Log($"Loaded {images.Count} faces into recognizer ✅");
+        }
+        else
+        {
+            Debug.LogWarning("No valid faces to train ❌");
+        }
+    }
+}
